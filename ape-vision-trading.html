@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ape Vision Trading · APE Vision Group</title>
+<meta name="description" content="Ape Vision Trading Pvt. Ltd. — global sourcing, commodity trading and cross-border trade facilitation across food & agriculture, FMCG, metals, energy, industrial goods and specialised categories.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0E1B33;
+    --ink:#2B3648;
+    --ink-soft:#5B6576;
+    --blue:#1E4FD8;
+    --teal:#1FB8AC;
+    --violet:#7C5CE0;
+    --paper:#FFFFFF;
+    --paper-soft:#F6F8FB;
+    --line:#DFE4EC;
+    --line-strong:#B9C1D0;
+    --grad: linear-gradient(115deg, var(--blue) 0%, var(--teal) 55%, var(--violet) 100%);
+
+    --font-display:'Fraunces', serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,h4{font-family:var(--font-display);color:var(--navy);margin:0;font-weight:600;}
+  p{margin:0;}
+  ul{margin:0;padding:0;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px;}
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--blue);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--blue);
+    display:inline-block;
+  }
+  .btn{
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:.04em;
+    padding:14px 26px;
+    border-radius:2px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border:1px solid var(--navy);
+    transition:all .25s ease;
+    background:none;
+    cursor:pointer;
+  }
+  .btn-solid{background:var(--navy);color:#fff;}
+  .btn-solid:hover{background:var(--blue);border-color:var(--blue);transform:translateY(-2px);}
+  .btn-outline{color:var(--navy);}
+  .btn-outline:hover{background:var(--navy);color:#fff;transform:translateY(-2px);}
+  .btn svg{width:14px;height:14px;transition:transform .25s ease;}
+  .btn:hover svg{transform:translateX(3px);}
+
+  /* ---------- image placeholder ---------- */
+  .imgph{
+    position:relative;
+    border:1px dashed var(--line-strong);
+    border-radius:8px;
+    background:
+      repeating-linear-gradient(135deg, #F0F2F7 0 2px, transparent 2px 14px),
+      var(--paper-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--ink-soft);
+    text-align:center;
+    overflow:hidden;
+    min-height:220px;
+  }
+  .imgph .imgph-label{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:8px 14px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    line-height:1.5;
+  }
+  .imgph .imgph-label b{color:var(--navy);font-size:12px;letter-spacing:.06em;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 40px;
+    max-width:1240px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand img{height:34px;width:auto;}
+  .brand-word{
+    font-family:var(--font-body);font-weight:700;
+    font-size:15px;letter-spacing:.03em;color:var(--navy);
+  }
+  .brand-word span{display:block;font-family:var(--font-mono);font-weight:400;font-size:10px;letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase;margin-top:1px;}
+  nav ul{list-style:none;display:flex;gap:32px;margin:0;padding:0;}
+  nav a{
+    font-size:13px;font-weight:500;color:var(--ink);
+    position:relative;padding:4px 0;
+  }
+  nav a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--blue);transition:width .25s ease;
+  }
+  nav a:hover::after,nav a.active::after{width:100%;}
+  nav a.active{color:var(--blue);}
+  .nav-cta{display:flex;gap:12px;}
+  .nav-links{display:flex;align-items:center;gap:36px;}
+  .nav-toggle{display:none;}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;z-index:60;}
+  .hamburger span{width:22px;height:2px;background:var(--navy);display:block;transition:all .25s ease;}
+  .nav-toggle:checked ~ .hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle:checked ~ .hamburger span:nth-child(2){opacity:0;}
+  .nav-toggle:checked ~ .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:88px 0 100px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;
+  }
+  h1.hero-head{
+    font-size:clamp(32px, 5.2vw, 56px);line-height:1.08;letter-spacing:-.01em;font-weight:600;
+    margin-bottom:26px;
+  }
+  h1.hero-head em{font-style:italic;font-weight:500;color:var(--blue);}
+  .hero-sub{
+    font-size:clamp(15px, 1.6vw, 17px);color:var(--ink-soft);max-width:520px;margin-bottom:16px;
+  }
+  .hero-sub.b{margin-bottom:36px;}
+  .hero-ctas{display:flex;gap:14px;margin-bottom:0;flex-wrap:wrap;}
+  .hero-visual{position:relative;}
+  .hero-visual .imgph{aspect-ratio:4/5;}
+  .crop{
+    position:absolute;width:22px;height:22px;
+    border-color:var(--navy);border-style:solid;border-width:0;opacity:.5;
+  }
+  .crop.tl{top:-10px;left:-10px;border-top-width:1px;border-left-width:1px;}
+  .crop.br{bottom:-10px;right:-10px;border-bottom-width:1px;border-right-width:1px;}
+
+  /* ---------- ticker ---------- */
+  .ticker{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:18px 0;overflow:hidden;background:var(--paper-soft);
+  }
+  .ticker-track{display:flex;gap:0;width:max-content;animation:scroll 32s linear infinite;}
+  .ticker-track span{
+    font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-soft);padding:0 28px;border-right:1px solid var(--line-strong);
+    white-space:nowrap;
+  }
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- section shell ---------- */
+  section{padding:clamp(64px, 10vw, 110px) 0;}
+  section.soft{background:var(--paper-soft);}
+  .section-head{max-width:640px;margin-bottom:clamp(40px, 6vw, 64px);}
+  .section-head h2{font-size:clamp(26px, 3.6vw, 36px);line-height:1.18;margin-top:18px;}
+  .section-head .kicker{font-size:13px;color:var(--ink-soft);font-weight:500;margin-top:8px;display:block;}
+  .section-lead{font-size:15.5px;color:var(--ink-soft);max-width:640px;margin-top:26px;}
+
+  /* ---------- process ---------- */
+  .process{position:relative;}
+  .process-line{
+    position:absolute;top:26px;left:0;right:0;height:1px;background:var(--line-strong);
+  }
+  .process-grid{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:24px;position:relative;
+  }
+  .process-step{display:flex;flex-direction:column;gap:16px;}
+  .process-node{
+    width:52px;height:52px;border-radius:50%;background:var(--paper);
+    border:1px solid var(--navy);display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-mono);font-size:13px;color:var(--navy);position:relative;z-index:2;
+  }
+  .process-step h4{font-size:16px;margin-bottom:6px;}
+  .process-step p{font-size:13.5px;color:var(--ink-soft);}
+
+  /* ---------- service cards (what we do) ---------- */
+  .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .service-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:8px;
+    padding:34px 30px;display:flex;flex-direction:column;gap:14px;
+    transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+  }
+  .service-card:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:0 20px 40px -28px rgba(14,27,51,.35);}
+  .service-num{font-family:var(--font-mono);font-size:11px;color:var(--blue);letter-spacing:.1em;}
+  .service-card h3{font-size:19px;margin-top:2px;}
+  .service-card p{font-size:13.5px;color:var(--ink-soft);flex:1;}
+  .service-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+  .service-tags span{
+    font-family:var(--font-mono);font-size:10.5px;color:var(--navy);
+    border:1px solid var(--line);border-radius:20px;padding:5px 11px;letter-spacing:.02em;
+  }
+  .service-card.wide{grid-column:span 1;}
+
+  /* ---------- trading portfolio ---------- */
+  .portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .portfolio-card{background:var(--paper);padding:38px 36px;display:flex;flex-direction:column;gap:16px;}
+  .portfolio-card .eyebrow{margin-bottom:2px;}
+  .portfolio-card h3{font-size:20px;}
+  .portfolio-card p{font-size:13.5px;color:var(--ink-soft);}
+  .portfolio-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;list-style:none;}
+  .portfolio-list li{
+    font-size:12.5px;font-weight:500;color:var(--navy);
+    background:var(--paper-soft);border:1px solid var(--line);
+    padding:8px 14px;border-radius:20px;
+  }
+
+  /* ---------- checklist (due diligence) ---------- */
+  .check-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .check-item{background:var(--paper);padding:24px 20px;display:flex;align-items:flex-start;gap:12px;}
+  .check-item svg{width:16px;height:16px;flex-shrink:0;margin-top:3px;color:var(--teal);}
+  .check-item span{font-size:13.5px;font-weight:500;color:var(--ink);}
+
+  /* ---------- global ---------- */
+  .global-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;}
+  .global-grid .imgph{aspect-ratio:1/1;}
+  .tag-cloud{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+  .tag-cloud span{
+    font-family:var(--font-mono);font-size:12px;color:var(--navy);
+    border:1px solid var(--line-strong);border-radius:20px;padding:8px 16px;letter-spacing:.02em;
+  }
+
+  /* ---------- audience cards (buyers / suppliers / partners) ---------- */
+  .audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .audience-card{
+    display:flex;flex-direction:column;gap:18px;
+    background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:36px 32px;
+  }
+  .audience-card .eyebrow{margin-bottom:0;}
+  .audience-card h3{font-size:22px;line-height:1.2;}
+  .audience-card p{font-size:13.5px;color:var(--ink-soft);}
+  .audience-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin:6px 0 4px;}
+  .audience-list li{
+    font-size:13px;color:var(--ink);padding-left:16px;position:relative;
+  }
+  .audience-list li::before{
+    content:"";position:absolute;left:0;top:8px;width:6px;height:1px;background:var(--blue);
+  }
+  .audience-card .btn{margin-top:auto;align-self:flex-start;}
+
+  /* ---------- kollektor feature ---------- */
+  .kollektor{
+    background:var(--navy);border-radius:10px;overflow:hidden;
+    display:grid;grid-template-columns:1fr 1fr;align-items:stretch;position:relative;
+  }
+  .kollektor::before{content:"";position:absolute;inset:0;background:var(--grad);opacity:.16;pointer-events:none;}
+  .kollektor-copy{padding:56px;color:#fff;display:flex;flex-direction:column;justify-content:center;gap:20px;position:relative;}
+  .kollektor-copy .eyebrow{color:var(--teal);}
+  .kollektor-copy h2{color:#fff;font-size:clamp(24px,3.2vw,32px);line-height:1.2;}
+  .kollektor-copy p{font-size:14.5px;color:rgba(255,255,255,.72);}
+  .kollektor-copy .btn-outline{border-color:rgba(255,255,255,.4);color:#fff;align-self:flex-start;}
+  .kollektor-copy .btn-outline:hover{background:#fff;color:var(--navy);}
+  .kollektor-visual{position:relative;min-height:280px;}
+  .kollektor-visual .imgph{position:absolute;inset:0;border-radius:0;min-height:0;height:100%;border:none;border-left:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);}
+  .kollektor-visual .imgph-label{background:rgba(14,27,51,.6);border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.75);}
+  .kollektor-visual .imgph-label b{color:#fff;}
+
+  /* ---------- sectors / beyond commodities ---------- */
+  .sector-list{border-top:1px solid var(--line);}
+  .sector-row{
+    display:grid;grid-template-columns:48px 1fr 2fr;gap:24px;
+    padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline;
+  }
+  .sector-row .idx{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);}
+  .sector-row h4{font-size:18px;}
+  .sector-row p{font-size:13.5px;color:var(--ink-soft);}
+
+  /* ---------- why us feature grid ---------- */
+  .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .feature-card{background:var(--paper);padding:32px 28px;display:flex;flex-direction:column;gap:10px;}
+  .feature-icon{
+    width:38px;height:38px;border-radius:50%;border:1px solid var(--navy);
+    display:flex;align-items:center;justify-content:center;color:var(--navy);
+  }
+  .feature-icon svg{width:16px;height:16px;}
+  .feature-card h4{font-size:16px;margin-top:6px;}
+  .feature-card p{font-size:13px;color:var(--ink-soft);}
+
+  /* ---------- ecosystem flow ---------- */
+  .flow-list{display:flex;flex-direction:column;}
+  .flow-item{
+    display:grid;grid-template-columns:200px 1fr;gap:32px;
+    padding:28px 0;border-bottom:1px solid var(--line);align-items:center;
+  }
+  .flow-item:first-child{border-top:1px solid var(--line);}
+  .flow-item.current{background:var(--paper-soft);margin:0 -28px;padding:28px 28px;border-radius:6px;border-bottom:1px solid var(--line);}
+  .flow-name{display:flex;flex-direction:column;gap:4px;}
+  .flow-name h4{font-size:17px;}
+  .flow-name span{font-family:var(--font-mono);font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;}
+  .flow-desc p{font-size:13.5px;color:var(--ink-soft);}
+  .flow-arrow-row{display:flex;justify-content:center;padding:6px 0;color:var(--line-strong);}
+  .flow-arrow-row svg{width:16px;height:16px;}
+
+  /* ---------- partnership principles ---------- */
+  .principle-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;}
+  .principle-card{display:flex;flex-direction:column;gap:12px;}
+  .principle-mark{font-family:var(--font-display);font-style:italic;font-size:26px;color:var(--blue);}
+  .principle-card h4{font-size:15.5px;}
+  .principle-card p{font-size:13px;color:var(--ink-soft);}
+
+  /* ---------- local understanding ---------- */
+  .local-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+  .local-card{display:flex;flex-direction:column;gap:10px;padding-top:18px;border-top:2px solid var(--navy);}
+  .local-card h4{font-size:16px;}
+  .local-card p{font-size:13px;color:var(--ink-soft);}
+
+  /* ---------- closing ---------- */
+  .closing{
+    background:var(--navy);color:#fff;text-align:left;position:relative;overflow:hidden;
+  }
+  .closing::before{
+    content:"";position:absolute;inset:0;
+    background:var(--grad);opacity:.14;
+  }
+  .closing .wrap{position:relative;}
+  .closing h2{color:#fff;font-size:clamp(28px, 4.4vw, 42px);max-width:760px;line-height:1.18;}
+  .closing h2 em{color:var(--teal);font-style:italic;}
+  .closing-ctas{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;}
+  .closing .btn-outline{border-color:rgba(255,255,255,.4);color:#fff;}
+  .closing .btn-outline:hover{background:#fff;color:var(--navy);}
+  .closing .btn-solid{background:#fff;color:var(--navy);border-color:#fff;}
+  .closing .btn-solid:hover{background:var(--teal);border-color:var(--teal);color:#fff;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--navy);color:rgba(255,255,255,.82);position:relative;}
+  footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);}
+  .foot-main{padding:88px 0 56px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;}
+  .foot-brand .brand-word{font-size:16px;color:#fff;}
+  .foot-brand .brand-word span{color:rgba(255,255,255,.5);}
+  .foot-brand p{font-size:13.5px;color:rgba(255,255,255,.55);margin-top:18px;max-width:300px;line-height:1.7;}
+  .foot-col h5{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:20px;font-weight:500;}
+  .foot-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px;}
+  .foot-col a{font-size:13.5px;color:rgba(255,255,255,.75);transition:color .2s ease;}
+  .foot-col a:hover{color:var(--teal);}
+
+  .foot-bottom{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:26px 0;border-top:1px solid rgba(255,255,255,.12);
+    font-size:13px;color:rgba(255,255,255,.45);
+  }
+  .foot-bottom-links{display:flex;gap:26px;}
+  .foot-bottom-links a{font-size:13px;color:rgba(255,255,255,.45);}
+  .foot-bottom-links a:hover{color:#fff;}
+
+  /* ---------- tablet (≤1024px) ---------- */
+  @media (max-width:1024px){
+    .wrap{padding:0 32px;}
+    .nav-row{padding:16px 32px;}
+    .hero-grid{gap:44px;}
+    .global-grid{gap:40px;}
+    .service-grid{grid-template-columns:repeat(2,1fr);}
+    .audience-grid{grid-template-columns:repeat(2,1fr);}
+    .feature-grid{grid-template-columns:repeat(2,1fr);}
+    .check-grid{grid-template-columns:repeat(2,1fr);}
+    .principle-grid{grid-template-columns:repeat(3,1fr);row-gap:32px;}
+    .local-grid{grid-template-columns:repeat(2,1fr);row-gap:28px;}
+    .kollektor{grid-template-columns:1fr;}
+    .kollektor-visual{min-height:220px;order:-1;}
+    .flow-item{grid-template-columns:160px 1fr;gap:20px;}
+  }
+
+  /* ---------- nav collapses (≤900px) ---------- */
+  @media (max-width:900px){
+    .hamburger{display:flex;}
+    .nav-links{
+      position:fixed;top:69px;left:0;right:0;bottom:0;
+      background:var(--paper);
+      flex-direction:column;align-items:flex-start;
+      gap:0;padding:8px 28px 40px;
+      overflow-y:auto;
+      transform:translateY(-12px);opacity:0;visibility:hidden;pointer-events:none;
+      transition:opacity .22s ease, transform .22s ease;
+    }
+    .nav-toggle:checked ~ .nav-links{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;}
+    .nav-links nav{width:100%;}
+    .nav-links nav ul{flex-direction:column;gap:0;width:100%;}
+    .nav-links nav ul li{width:100%;border-bottom:1px solid var(--line);}
+    .nav-links nav ul li a{display:block;padding:16px 2px;font-size:15px;}
+    .nav-cta{flex-direction:column;width:100%;gap:12px;margin-top:20px;}
+    .nav-cta .btn{width:100%;justify-content:center;}
+
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;}
+    .hero-visual .imgph{aspect-ratio:16/10;}
+    .process-grid{grid-template-columns:repeat(3,1fr);row-gap:36px;}
+    .process-line{display:none;}
+    .service-grid{grid-template-columns:1fr;gap:24px;}
+    .portfolio-grid{grid-template-columns:1fr;}
+    .audience-grid{grid-template-columns:1fr;gap:24px;}
+    .feature-grid{grid-template-columns:1fr;}
+    .check-grid{grid-template-columns:1fr 1fr;}
+    .global-grid{grid-template-columns:1fr;}
+    .global-grid .imgph{order:-1;aspect-ratio:16/10;}
+    .principle-grid{grid-template-columns:repeat(2,1fr);}
+    .local-grid{grid-template-columns:1fr;}
+    .foot-main{grid-template-columns:1fr 1fr;gap:36px 28px;}
+  }
+
+  /* ---------- phone (≤640px) ---------- */
+  @media (max-width:640px){
+    .wrap{padding:0 20px;}
+    .nav-row{padding:14px 20px;}
+    .brand-word span{display:none;}
+    section{padding:56px 0;}
+    .hero{padding:48px 0 56px;}
+    .hero-ctas .btn,.hero-ctas a{width:100%;justify-content:center;}
+    .ticker-track span{font-size:11px;padding:0 18px;}
+    .process-grid{grid-template-columns:repeat(2,1fr);row-gap:32px;}
+    .portfolio-card{padding:28px 24px;}
+    .check-grid{grid-template-columns:1fr;}
+    .sector-row{grid-template-columns:36px 1fr;row-gap:8px;padding:22px 0;}
+    .sector-row p{grid-column:1 / -1;}
+    .tag-cloud span{font-size:11px;padding:7px 13px;}
+    .kollektor-copy{padding:36px 24px;}
+    .flow-item{grid-template-columns:1fr;gap:10px;}
+    .flow-item.current{margin:0 -20px;padding:24px 20px;}
+    .principle-grid{grid-template-columns:1fr 1fr;}
+    .closing-ctas .btn{width:100%;justify-content:center;}
+    .foot-main{grid-template-columns:1fr;gap:36px;padding:56px 0 40px;}
+    .foot-bottom{flex-direction:column;gap:14px;align-items:flex-start;padding:22px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <a class="brand" href="index.html">
+      <img src="ape-vision-logo-01.png" alt="APE Vision Group">
+      <span class="brand-word">APE VISION GROUP<span>Shaping bold ideas into visionary realities</span></span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </label>
+    <div class="nav-links">
+      <nav>
+        <ul>
+          <li><a href="about-us.html">About</a></li>
+          <li><a href="our-businesses.html">Businesses</a></li>
+          <li><a href="ape-vision-trading.html" class="active">Trading</a></li>
+          <li><a href="industries-capabilities.html">Industries</a></li>
+          <li><a href="global-presence.html">Global Presence</a></li>
+          <li><a href="founders-perspective.html">Leadership</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-outline" href="contact.html">Contact</a>
+        <a class="btn btn-solid" href="partner-with-us.html">Partner With Us</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow" style="margin-bottom:28px;">Ape Vision Trading Pvt. Ltd.</div>
+      <h1 class="hero-head">Connecting <em>global</em> supply with opportunity.</h1>
+      <p class="hero-sub b">Ape Vision Trading Pvt. Ltd. is the global trading and commodity-sourcing division of APE Vision Group, connecting suppliers, buyers, markets and opportunities across geographies.</p>
+      <p class="hero-sub" style="margin-bottom:36px;">Our business spans food and agricultural products, FMCG, metals and minerals, energy products, industrial goods, toys and collectibles, and specialised trade opportunities.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="contact.html">Discuss a Trade Opportunity <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-outline" href="#portfolio">Explore Our Portfolio</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="imgph">
+        <div class="imgph-label"><b>Hero image</b>Global trade / port &amp; logistics<br>4:5 · replace on upload</div>
+      </div>
+      <div class="crop tl"></div>
+      <div class="crop br"></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Food &amp; Agriculture</span><span>FMCG</span><span>Metals &amp; Minerals</span><span>Energy</span><span>Industrial Goods</span><span>Toys &amp; Collectibles</span><span>Specialised Trade</span>
+    <span>Food &amp; Agriculture</span><span>FMCG</span><span>Metals &amp; Minerals</span><span>Energy</span><span>Industrial Goods</span><span>Toys &amp; Collectibles</span><span>Specialised Trade</span>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">About Ape Vision Trading</div>
+      <h2>Global commerce, built around relationships.</h2>
+      <p class="section-lead">International trade is ultimately about more than moving products from one country to another. It requires understanding markets, suppliers, buyers, regulations, logistics, pricing, documentation and commercial requirements.</p>
+      <p class="section-lead">Ape Vision Trading brings these elements together — focusing on global sourcing, cross-border trade facilitation and commodity trading across a carefully selected portfolio of products and markets. Supported by relationships with suppliers, buyers, logistics partners and other stakeholders, the company aims to create trade flows that are commercially viable, appropriately structured and responsibly executed.</p>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">What we do</div>
+      <h2>From source to market.</h2>
+    </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Global Sourcing</h3>
+        <p>Identifying and connecting with suppliers capable of meeting specific product, quality, quantity and market requirements.</p>
+        <div class="service-tags"><span>Supplier Identification</span><span>Product Sourcing</span><span>Market Research</span><span>Commercial Evaluation</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Commodity Trading</h3>
+        <p>Facilitating transactions across selected agricultural, food, mineral, metal, energy and industrial commodities.</p>
+        <div class="service-tags"><span>Import</span><span>Export</span><span>Cross-Border Trade</span><span>Commodity Sourcing</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>Trade Facilitation</h3>
+        <p>Supporting buyers and sellers in navigating the commercial and operational requirements involved in international transactions.</p>
+        <div class="service-tags"><span>Buyer-Seller Coordination</span><span>Documentation</span><span>Logistics Coordination</span><span>Transaction Support</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>Market Access</h3>
+        <p>Connecting businesses with opportunities across India and international markets through established commercial relationships and cross-border networks.</p>
+        <div class="service-tags"><span>Market Entry</span><span>Distribution</span><span>Sourcing</span><span>Offtake Opportunities</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <h3>Specialised Trade</h3>
+        <p>Exploring opportunities in specialised products and categories where sourcing knowledge, market access and transaction coordination can create value.</p>
+        <div class="service-tags"><span>Niche Categories</span><span>Value Creation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Our trading portfolio</div>
+      <h2>A diversified commodity &amp; product ecosystem.</h2>
+      <p class="section-lead">Ape Vision Trading operates across multiple trading categories.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <div class="eyebrow">Food, Agriculture &amp; FMCG</div>
+        <h3>Our portfolio includes opportunities across:</h3>
+        <ul class="portfolio-list">
+          <li>Basmati Rice</li><li>Turmeric</li><li>White &amp; Yellow Corn</li><li>FMCG Products</li><li>Liquor &amp; FMCG Products</li><li>Imported Liquor</li><li>Buffalo Meat</li>
+        </ul>
+        <p>The company works with relevant regulatory and market requirements applicable to the products and jurisdictions involved.</p>
+      </div>
+      <div class="portfolio-card">
+        <div class="eyebrow">Metals, Minerals &amp; Commodities</div>
+        <h3>Our trading interests include:</h3>
+        <ul class="portfolio-list">
+          <li>Aluminium Ingots</li><li>Copper Ingots</li><li>Copper Wire Scrap</li><li>Iron Ore</li><li>Red Sandalwood</li><li>Used Cooking Oil</li>
+        </ul>
+        <p>These opportunities span sourcing, import, export and cross-border commodity transactions.</p>
+      </div>
+      <div class="portfolio-card">
+        <div class="eyebrow">Energy &amp; Industrial Products</div>
+        <h3>The Group explores international opportunities across:</h3>
+        <ul class="portfolio-list">
+          <li>Crude Oil</li><li>EN590 – 10 PPM</li><li>Carbon Capture</li><li>Optical Fibre Cable</li><li>Industrial &amp; Infrastructure Products</li>
+        </ul>
+        <p>The focus is on connecting credible supply with commercially aligned buyers and markets.</p>
+      </div>
+      <div class="portfolio-card">
+        <div class="eyebrow">Toys &amp; Collectibles</div>
+        <h3>The Kollektor ecosystem</h3>
+        <p>Ape Vision Trading also operates in the toys, collectibles and pop-culture ecosystem, connecting products with consumers and markets through its consumer-facing brand, The Kollektor.</p>
+        <a class="btn btn-outline" style="margin-top:6px;align-self:flex-start;" href="https://thekollektor.com/" target="_blank" rel="noopener">Explore The Kollektor <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">How we trade</div>
+      <h2>A structured approach to global commerce.</h2>
+      <p class="section-lead">Successful international transactions require discipline at every stage.</p>
+    </div>
+    <div class="process">
+      <div class="process-line"></div>
+      <div class="process-grid">
+        <div class="process-step"><div class="process-node">01</div><h4>Understand</h4><p>Product · Quantity · Quality · Origin · Destination · Timeline.</p></div>
+        <div class="process-step"><div class="process-node">02</div><h4>Source</h4><p>We identify potential suppliers or buyers through our network and market relationships.</p></div>
+        <div class="process-step"><div class="process-node">03</div><h4>Evaluate</h4><p>We assess commercial requirements, product specifications and transaction structure.</p></div>
+        <div class="process-step"><div class="process-node">04</div><h4>Structure</h4><p>We coordinate the commercial and operational framework required to move forward.</p></div>
+        <div class="process-step"><div class="process-node">05</div><h4>Coordinate</h4><p>We work across suppliers, buyers, logistics partners and other transaction participants.</p></div>
+        <div class="process-step"><div class="process-node">06</div><h4>Execute</h4><p>The transaction progresses through the agreed commercial and documentation framework.</p></div>
+      </div>
+    </div>
+    <p class="section-lead" style="margin-top:48px;font-style:italic;">The objective: a clearer path from supply to demand.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Trade with due diligence</div>
+      <h2>Speed matters. So does responsibility.</h2>
+      <p class="section-lead">International trade can involve complex regulatory, financial and logistical considerations. Our approach places importance on commercial clarity, appropriate due diligence and responsible transaction practices. Depending on the nature of the transaction, considerations may include:</p>
+    </div>
+  </div>
+  <div class="check-grid">
+    <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Product Verification</span></div>
+    <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Counterparty Assessment</span></div>
+    <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Regulatory Requirements</span></div>
+    <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Documentation</span></div>
+    <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Quality Specifications</span></div>
+    <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Logistics</span></div>
+    <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Payment &amp; Commercial Terms</span></div>
+    <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span>Import / Export Requirements</span></div>
+  </div>
+  <div class="wrap">
+    <p class="section-lead" style="margin-top:40px;">We aim to move quickly without treating responsible trade practices as an afterthought.</p>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap global-grid">
+    <div>
+      <div class="eyebrow">Our global network</div>
+      <h2 style="margin-top:18px;font-size:clamp(24px, 3.4vw, 34px);">Connecting markets across borders.</h2>
+      <p class="section-lead" style="margin-top:22px;">Ape Vision Trading operates with an international outlook, building relationships across sourcing markets, buyer markets and strategic commercial locations. The Group's broader international presence and relationships extend across:</p>
+      <div class="tag-cloud">
+        <span>India</span><span>UAE</span><span>Switzerland</span><span>Singapore</span><span>Japan</span><span>Hong Kong</span><span>Nepal</span><span>Australia</span><span>New Zealand</span><span>Vietnam</span><span>Mauritius</span><span>Madagascar</span>
+      </div>
+      <p class="section-lead" style="margin-top:26px;">This network provides a foundation for exploring cross-border opportunities across multiple sectors and geographies.</p>
+    </div>
+    <div class="imgph"><div class="imgph-label"><b>Map graphic</b>Global trading network<br>square · replace on upload</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Work with us</div>
+      <h2>Whichever side of the trade you're on.</h2>
+    </div>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="eyebrow">For Buyers</div>
+        <h3>Looking for reliable sourcing?</h3>
+        <p>Tell us what you need. Whether you are seeking an agricultural commodity, industrial product, energy product, specialised good or consumer product, our team can assess the requirement and explore relevant sourcing opportunities.</p>
+        <ul class="audience-list">
+          <li>Product</li><li>Quantity</li><li>Specification / Grade</li><li>Origin Preference</li><li>Destination</li><li>Required Timeline</li><li>Commercial Terms</li>
+        </ul>
+        <a class="btn btn-outline" href="contact.html">Submit a Sourcing Requirement <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="audience-card">
+        <div class="eyebrow">For Suppliers</div>
+        <h3>Have products to take to new markets?</h3>
+        <p>Ape Vision Trading works with suppliers seeking credible buyer relationships and international market opportunities. We are interested in understanding:</p>
+        <ul class="audience-list">
+          <li>Your Product</li><li>Available Quantity</li><li>Origin</li><li>Quality / Specifications</li><li>Certifications &amp; Documentation</li><li>Target Markets</li><li>Commercial Terms</li>
+        </ul>
+        <a class="btn btn-outline" href="contact.html">Introduce Your Product <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="audience-card">
+        <div class="eyebrow">For Strategic Trade Partners</div>
+        <h3>Let's build better trade flows.</h3>
+        <p>We welcome relationships with producers, manufacturers, exporters, importers, distributors, commodity buyers, offtakers, logistics partners, financial &amp; commercial partners and international trading partners.</p>
+        <ul class="audience-list">
+          <li>Producers &amp; Manufacturers</li><li>Exporters &amp; Importers</li><li>Distributors &amp; Offtakers</li><li>Logistics Partners</li><li>Financial &amp; Commercial Partners</li>
+        </ul>
+        <p style="margin-top:-4px;">Where capabilities and requirements align, we explore ways to create long-term commercial relationships rather than one-off transactions.</p>
+        <a class="btn btn-outline" href="partner-with-us.html">Become a Trade Partner <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="kollektor">
+      <div class="kollektor-copy">
+        <div class="eyebrow">The Kollektor</div>
+        <h2>Collecting culture. Building community.</h2>
+        <p>The Kollektor is a consumer-facing collectibles and pop-culture brand under Ape Vision Trading Pvt. Ltd. — focused on the growing world of anime, trading card games, collectibles, toys and pop culture, connecting enthusiasts with products and experiences built around the communities they love.</p>
+        <p>The Kollektor represents a different side of Ape Vision Trading: the ability to take global products and cultural trends and develop them into consumer-facing opportunities — from global sourcing to cultural commerce.</p>
+        <a class="btn btn-outline" href="https://thekollektor.com/" target="_blank" rel="noopener">Explore The Kollektor <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="kollektor-visual">
+        <div class="imgph"><div class="imgph-label"><b>Image</b>The Kollektor · collectibles<br>replace on upload</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Beyond commodities</div>
+      <h2>Building a broader trading platform.</h2>
+      <p class="section-lead">Ape Vision Trading's opportunity set extends beyond conventional commodities. The company continues to explore opportunities where international supply, market demand, sourcing capability and commercial relationships intersect.</p>
+    </div>
+    <div class="sector-list">
+      <div class="sector-row"><div class="idx">01</div><h4>Commodity Markets</h4><p>Agriculture · Food · Metals · Minerals · Energy</p></div>
+      <div class="sector-row"><div class="idx">02</div><h4>Industrial Trade</h4><p>Infrastructure Products · Industrial Goods · Specialised Materials</p></div>
+      <div class="sector-row"><div class="idx">03</div><h4>Consumer Markets</h4><p>Toys · Collectibles · FMCG · Pop Culture</p></div>
+      <div class="sector-row"><div class="idx">04</div><h4>Emerging Opportunities</h4><p>New products, markets and cross-border opportunities aligned with the Group's capabilities and commercial strategy.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Why Ape Vision Trading</div>
+      <h2>A global view. A commercial approach.</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 4 6 4 9s-1.5 6.3-4 9c-2.5-2.7-4-6-4-9s1.5-6.3 4-9z"/></svg></div>
+        <h4>Diverse Sourcing Capability</h4>
+        <p>Access to a broad range of commodity, product and specialised trade opportunities.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3v18M4 6l16 12M20 6L4 18"/></svg></div>
+        <h4>International Network</h4>
+        <p>Relationships across multiple sourcing and destination markets.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg></div>
+        <h4>Commercial Understanding</h4>
+        <p>An approach grounded in pricing, requirements, transaction structure and market realities.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></div>
+        <h4>Cross-Border Experience</h4>
+        <p>Understanding the practical considerations involved in international trade.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7l3 9M16 7l-3 9M8.5 6h7"/></svg></div>
+        <h4>Group-Level Connectivity</h4>
+        <p>Access to complementary capabilities across engineering, infrastructure, technology and real estate within APE Vision Group.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 0113.66-5.66M20 12a8 8 0 01-13.66 5.66M4 4v5h5M20 20v-5h-5"/></svg></div>
+        <h4>Flexibility</h4>
+        <p>The ability to explore opportunities across commodities, products and markets rather than being limited to a single category.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Part of a larger business ecosystem</div>
+      <h2>Trade connected to the wider group.</h2>
+      <p class="section-lead">Ape Vision Trading is one part of the APE Vision Group ecosystem — from projects to products, the Group connects capabilities across markets.</p>
+    </div>
+    <div class="flow-list">
+      <div class="flow-item">
+        <div class="flow-name"><h4>Ape Vision LLP</h4><span>Consulting · Project Advisory · PMC</span></div>
+        <div class="flow-desc"><p>Providing technical and commercial expertise across projects and opportunities.</p></div>
+      </div>
+      <div class="flow-arrow-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+      <div class="flow-item">
+        <div class="flow-name"><h4>Ape Vision Techinfra</h4><span>Engineering · EPC · Infrastructure</span></div>
+        <div class="flow-desc"><p>Executing infrastructure and energy opportunities.</p></div>
+      </div>
+      <div class="flow-arrow-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+      <div class="flow-item current">
+        <div class="flow-name"><h4>Ape Vision Trading</h4><span>Global Sourcing · Commodities · Cross-Border Trade</span></div>
+        <div class="flow-desc"><p>Connecting products, suppliers, buyers and markets.</p></div>
+      </div>
+      <div class="flow-arrow-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+      <div class="flow-item">
+        <div class="flow-name"><h4>The Kollektor</h4><span>Toys · Collectibles · Anime · TCG · Pop Culture</span></div>
+        <div class="flow-desc"><p>Taking selected global products and trends into consumer-facing markets.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Our approach to partnerships</div>
+      <h2>Relationships that go beyond a single transaction.</h2>
+      <p class="section-lead">We believe long-term commercial relationships are built on:</p>
+    </div>
+    <div class="principle-grid">
+      <div class="principle-card"><div class="principle-mark">01</div><h4>Reliability</h4><p>Clear communication and dependable execution.</p></div>
+      <div class="principle-card"><div class="principle-mark">02</div><h4>Transparency</h4><p>Clarity around products, requirements and commercial terms.</p></div>
+      <div class="principle-card"><div class="principle-mark">03</div><h4>Due Diligence</h4><p>Appropriate assessment of counterparties, products and transaction requirements.</p></div>
+      <div class="principle-card"><div class="principle-mark">04</div><h4>Responsiveness</h4><p>Understanding that international trade often operates within time-sensitive markets.</p></div>
+      <div class="principle-card"><div class="principle-mark">05</div><h4>Long-Term Thinking</h4><p>Building relationships that can develop into repeat business and wider opportunities.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Global commerce. Local understanding.</div>
+      <h2>International trade works best when global opportunity meets local knowledge.</h2>
+      <p class="section-lead">APE Vision Trading brings together:</p>
+    </div>
+    <div class="local-grid">
+      <div class="local-card"><h4>Global Sourcing</h4><p>Identifying products and suppliers across international markets.</p></div>
+      <div class="local-card"><h4>Market Understanding</h4><p>Recognising the requirements and dynamics of destination markets.</p></div>
+      <div class="local-card"><h4>Local Execution</h4><p>Coordinating the practical details that turn an international opportunity into a transaction.</p></div>
+      <div class="local-card"><h4>Group Connectivity</h4><p>Drawing on the broader APE Vision Group ecosystem where relevant.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--teal);">Let's trade</div>
+    <h2 style="margin-top:18px;">Have a product, market or opportunity in mind?<br><em>We welcome the conversation.</em></h2>
+    <p style="margin-top:20px;max-width:640px;color:rgba(255,255,255,.72);font-size:15px;">Whether you are looking to source a commodity, reach a new market, find an offtaker, introduce a product or develop a strategic trading relationship — tell us what you are looking for.</p>
+    <div class="closing-ctas">
+      <a class="btn btn-solid" href="contact.html">Submit a Trade Enquiry</a>
+      <a class="btn btn-outline" href="contact.html">I'm a Buyer</a>
+      <a class="btn btn-outline" href="contact.html">I'm a Supplier</a>
+      <a class="btn btn-outline" href="partner-with-us.html">Become a Trade Partner</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-main">
+    <div class="foot-brand">
+      <a class="brand" href="index.html" style="margin-bottom:4px;">
+        <img src="ape-vision-logo-01.png" alt="APE Vision Group" style="height:30px;">
+        <span class="brand-word">APE VISION GROUP</span>
+      </a>
+      <p>Ape Vision Trading Pvt. Ltd. — Global Trading · Commodity Sourcing · Cross-Border Commerce. Part of APE Vision Group.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="our-businesses.html">Our Businesses</a></li>
+        <li><a href="founders-perspective.html">Founder's Perspective</a></li>
+        <li><a href="global-presence.html">Global Presence</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Businesses</h5>
+      <ul>
+        <li><a href="ape-vision-llp.html">Ape Vision LLP</a></li>
+        <li><a href="ape-vision-techinfra.html">Ape Vision Techinfra</a></li>
+        <li><a href="ape-vision-trading.html">Ape Vision Trading</a></li>
+        <li><a href="https://thekollektor.com/">The Kollektor ↗</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Get in Touch</h5>
+      <ul>
+        <li><a href="partner-with-us.html">Partner With Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="industries-capabilities.html">Industries &amp; Capabilities</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 APE Vision Group. All rights reserved.</span>
+    <div class="foot-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

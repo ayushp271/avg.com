@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ape Vision New Technologies · APE Vision Group</title>
+<meta name="description" content="Ape Vision New Technologies — the innovation and R&D division of APE Vision Group, focused on AI, high-performance computing, energy storage, green hydrogen, semiconductors and digital infrastructure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0E1B33;
+    --ink:#2B3648;
+    --ink-soft:#5B6576;
+    --blue:#1E4FD8;
+    --teal:#1FB8AC;
+    --violet:#7C5CE0;
+    --paper:#FFFFFF;
+    --paper-soft:#F6F8FB;
+    --line:#DFE4EC;
+    --line-strong:#B9C1D0;
+    --grad: linear-gradient(115deg, var(--blue) 0%, var(--teal) 55%, var(--violet) 100%);
+
+    --font-display:'Fraunces', serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,h4{font-family:var(--font-display);color:var(--navy);margin:0;font-weight:600;}
+  p{margin:0;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px;}
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--blue);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--blue);
+    display:inline-block;
+  }
+  .btn{
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:.04em;
+    padding:14px 26px;
+    border-radius:2px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border:1px solid var(--navy);
+    transition:all .25s ease;
+    background:none;
+    cursor:pointer;
+  }
+  .btn-solid{background:var(--navy);color:#fff;}
+  .btn-solid:hover{background:var(--blue);border-color:var(--blue);transform:translateY(-2px);}
+  .btn-outline{color:var(--navy);}
+  .btn-outline:hover{background:var(--navy);color:#fff;transform:translateY(-2px);}
+  .btn svg{width:14px;height:14px;transition:transform .25s ease;}
+  .btn:hover svg{transform:translateX(3px);}
+
+  /* ---------- image placeholder ---------- */
+  .imgph{
+    position:relative;
+    border:1px dashed var(--line-strong);
+    border-radius:8px;
+    background:
+      repeating-linear-gradient(135deg, #F0F2F7 0 2px, transparent 2px 14px),
+      var(--paper-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--ink-soft);
+    text-align:center;
+    overflow:hidden;
+    min-height:220px;
+  }
+  .imgph .imgph-label{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:8px 14px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    line-height:1.5;
+  }
+  .imgph .imgph-label b{color:var(--navy);font-size:12px;letter-spacing:.06em;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 40px;
+    max-width:1240px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand img{height:34px;width:auto;}
+  .brand-word{
+    font-family:var(--font-body);font-weight:700;
+    font-size:15px;letter-spacing:.03em;color:var(--navy);
+  }
+  .brand-word span{display:block;font-family:var(--font-mono);font-weight:400;font-size:10px;letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase;margin-top:1px;}
+  nav ul{list-style:none;display:flex;gap:32px;margin:0;padding:0;}
+  nav a{
+    font-size:13px;font-weight:500;color:var(--ink);
+    position:relative;padding:4px 0;
+  }
+  nav a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--blue);transition:width .25s ease;
+  }
+  nav a:hover::after{width:100%;}
+  nav a.active{color:var(--blue);}
+  nav a.active::after{width:100%;}
+  .nav-cta{display:flex;gap:12px;}
+  .nav-links{display:flex;align-items:center;gap:36px;}
+  .nav-toggle{display:none;}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;z-index:60;}
+  .hamburger span{width:22px;height:2px;background:var(--navy);display:block;transition:all .25s ease;}
+  .nav-toggle:checked ~ .hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle:checked ~ .hamburger span:nth-child(2){opacity:0;}
+  .nav-toggle:checked ~ .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:88px 0 76px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;
+  }
+  h1.hero-head{
+    font-size:clamp(32px, 5.2vw, 56px);line-height:1.08;letter-spacing:-.01em;font-weight:600;
+    margin-bottom:26px;
+  }
+  h1.hero-head em{font-style:italic;font-weight:500;color:var(--blue);}
+  .hero-sub{
+    font-size:clamp(15px, 1.6vw, 17px);color:var(--ink-soft);max-width:540px;margin-bottom:16px;
+  }
+  .hero-sub.b{margin-bottom:36px;}
+  .hero-ctas{display:flex;gap:14px;margin-bottom:0;flex-wrap:wrap;}
+  .hero-visual{position:relative;}
+  .hero-visual .imgph{aspect-ratio:4/5;}
+  .crop{
+    position:absolute;width:22px;height:22px;
+    border-color:var(--navy);border-style:solid;border-width:0;opacity:.5;
+  }
+  .crop.tl{top:-10px;left:-10px;border-top-width:1px;border-left-width:1px;}
+  .crop.br{bottom:-10px;right:-10px;border-bottom-width:1px;border-right-width:1px;}
+
+  /* ---------- statement bar ---------- */
+  .statement-bar{
+    background:var(--navy);color:#fff;position:relative;overflow:hidden;padding:42px 0;
+  }
+  .statement-bar::before{content:"";position:absolute;inset:0;background:var(--grad);opacity:.14;}
+  .statement-bar .wrap{position:relative;}
+  .statement-bar p{
+    font-family:var(--font-display);font-style:italic;font-weight:500;
+    font-size:clamp(18px, 2.6vw, 26px);line-height:1.35;text-align:center;color:#fff;
+    max-width:900px;margin:0 auto;
+  }
+  .statement-bar p em{color:var(--teal);font-style:italic;}
+
+  /* ---------- ticker ---------- */
+  .ticker{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:18px 0;overflow:hidden;background:var(--paper-soft);
+  }
+  .ticker-track{display:flex;gap:0;width:max-content;animation:scroll 34s linear infinite;}
+  .ticker-track span{
+    font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-soft);padding:0 28px;border-right:1px solid var(--line-strong);
+    white-space:nowrap;
+  }
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- section shell ---------- */
+  section{padding:clamp(64px, 10vw, 110px) 0;}
+  section.soft{background:var(--paper-soft);}
+  .section-head{max-width:680px;margin-bottom:clamp(40px, 6vw, 64px);}
+  .section-head h2{font-size:clamp(26px, 3.6vw, 36px);line-height:1.18;margin-top:18px;}
+  .section-head .kicker{font-size:13px;color:var(--ink-soft);font-weight:500;margin-top:8px;display:block;}
+  .section-lead{font-size:15.5px;color:var(--ink-soft);max-width:680px;margin-top:26px;}
+
+  /* ---------- shift list (industry change) ---------- */
+  .shift-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px;}
+  .shift-item{background:var(--paper);padding:24px 28px;font-size:14.5px;color:var(--ink);}
+  .shift-item b{color:var(--navy);font-weight:600;}
+
+  .tag-cloud{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+  .tag-cloud span{
+    font-family:var(--font-mono);font-size:12px;color:var(--navy);
+    border:1px solid var(--line-strong);border-radius:20px;padding:8px 16px;letter-spacing:.02em;
+  }
+  .objective-line{
+    font-family:var(--font-display);font-style:italic;font-weight:500;
+    font-size:clamp(18px,2.4vw,24px);color:var(--navy);margin-top:44px;
+    border-top:1px solid var(--line);padding-top:32px;
+  }
+
+  /* ---------- technology focus grid ---------- */
+  .tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .tech-card{background:var(--paper);padding:36px 32px;display:flex;flex-direction:column;gap:14px;}
+  .tech-num{font-family:var(--font-mono);font-size:11px;color:var(--blue);letter-spacing:.1em;}
+  .tech-card h3{font-size:19px;margin-top:2px;}
+  .tech-card p{font-size:13.5px;color:var(--ink-soft);}
+  .tech-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:8px;}
+  .tech-tags span{
+    font-family:var(--font-mono);font-size:10.5px;color:var(--ink-soft);
+    border:1px solid var(--line);border-radius:14px;padding:5px 11px;letter-spacing:.02em;
+  }
+
+  /* ---------- journey (7 step vertical process) ---------- */
+  .journey{position:relative;margin-top:8px;}
+  .journey-step{
+    display:grid;grid-template-columns:64px 1fr;gap:28px;position:relative;padding-bottom:40px;
+  }
+  .journey-step:last-child{padding-bottom:0;}
+  .journey-rail{position:relative;display:flex;justify-content:center;}
+  .journey-node{
+    width:44px;height:44px;border-radius:50%;background:var(--paper);
+    border:1px solid var(--navy);display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-mono);font-size:12px;color:var(--navy);position:relative;z-index:2;flex-shrink:0;
+  }
+  .journey-line{
+    position:absolute;top:44px;bottom:-40px;left:50%;width:1px;background:var(--line-strong);transform:translateX(-50%);
+  }
+  .journey-step:last-child .journey-line{display:none;}
+  .journey-body h4{font-size:17px;margin-bottom:8px;}
+  .journey-body p{font-size:14px;color:var(--ink-soft);max-width:560px;}
+  .journey-close{
+    font-family:var(--font-display);font-style:italic;font-weight:500;
+    font-size:clamp(17px,2.2vw,21px);color:var(--navy);margin-top:44px;
+    border-top:1px solid var(--line);padding-top:32px;
+  }
+
+  /* ---------- pathways ---------- */
+  .pathway-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .pathway-card{border-top:2px solid var(--navy);padding-top:20px;}
+  .pathway-card h3{font-size:17px;margin-bottom:10px;}
+  .pathway-card p{font-size:13.5px;color:var(--ink-soft);}
+
+  /* ---------- flow diagram (tech x infra) ---------- */
+  .split-flow{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start;}
+  .split-flow .lead-text p{font-size:14.5px;color:var(--ink-soft);margin-top:10px;}
+  .flow{display:flex;flex-direction:column;gap:0;}
+  .flow-box{
+    border:1px solid var(--line-strong);background:var(--paper);padding:20px 24px;border-radius:6px;
+  }
+  .flow-box .flow-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;}
+  .flow-box h4{font-size:17px;margin-bottom:4px;}
+  .flow-box p{font-size:13px;color:var(--ink-soft);}
+  .flow-arrow{display:flex;justify-content:center;padding:8px 0;color:var(--line-strong);}
+  .flow-arrow svg{width:16px;height:16px;}
+  .flow-note{font-size:14px;color:var(--ink-soft);margin-top:24px;}
+
+  /* ---------- dual theme cards (tech x energy / industry) ---------- */
+  .theme-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .theme-card{background:var(--paper);padding:40px 36px;}
+  .theme-card .eyebrow{margin-bottom:16px;}
+  .theme-card h3{font-size:21px;line-height:1.25;margin-bottom:16px;}
+  .theme-card p{font-size:14px;color:var(--ink-soft);margin-bottom:20px;}
+
+  /* ---------- Q&A list (R&D) ---------- */
+  .qa-list{border-top:1px solid var(--line);margin-top:8px;}
+  .qa-row{
+    display:grid;grid-template-columns:32px 1fr;gap:20px;
+    padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline;
+  }
+  .qa-row .q-mark{font-family:var(--font-display);font-style:italic;color:var(--blue);font-size:20px;}
+  .qa-row p{font-size:15px;color:var(--ink);}
+
+  /* ---------- advantage grid ---------- */
+  .adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .adv-card{
+    background:var(--paper);display:flex;flex-direction:column;gap:14px;
+    padding:28px 26px;border:1px solid var(--line);border-radius:6px;transition:all .3s ease;
+  }
+  .adv-card:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:0 16px 32px -20px rgba(14,27,51,.25);}
+  .adv-role{font-family:var(--font-mono);font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;}
+  .adv-card h3{font-size:18px;margin-top:2px;}
+  .adv-card p{font-size:13.5px;color:var(--ink-soft);flex:1;}
+  .adv-link{font-size:13px;font-weight:600;color:var(--navy);display:inline-flex;align-items:center;gap:6px;margin-top:2px;}
+  .adv-link svg{width:12px;height:12px;transition:transform .25s ease;}
+  .adv-card:hover .adv-link svg{transform:translateX(3px);}
+  .adv-statement{
+    font-family:var(--font-display);font-style:italic;font-weight:500;text-align:center;
+    font-size:clamp(17px,2.2vw,21px);color:var(--navy);margin-top:48px;
+  }
+
+  /* ---------- why grid ---------- */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .why-card{background:var(--paper);padding:32px 28px;}
+  .why-card .why-num{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);letter-spacing:.1em;margin-bottom:12px;display:block;}
+  .why-card h4{font-size:17px;margin-bottom:10px;}
+  .why-card p{font-size:13.5px;color:var(--ink-soft);}
+
+  /* ---------- india grid ---------- */
+  .india-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .india-grid p{font-size:15px;color:var(--ink-soft);margin-top:20px;line-height:1.75;}
+  .india-close{
+    font-family:var(--font-display);font-weight:500;font-size:clamp(19px,2.6vw,25px);
+    color:var(--navy);margin-top:28px;line-height:1.4;
+  }
+
+  /* ---------- closing ---------- */
+  .closing{
+    background:var(--navy);color:#fff;text-align:left;position:relative;overflow:hidden;
+  }
+  .closing::before{
+    content:"";position:absolute;inset:0;
+    background:var(--grad);opacity:.14;
+  }
+  .closing .wrap{position:relative;}
+  .closing h2{color:#fff;font-size:clamp(26px, 4vw, 38px);max-width:780px;line-height:1.24;}
+  .closing h2 em{color:var(--teal);font-style:italic;}
+  .closing-ctas{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;}
+  .closing .btn-outline{border-color:rgba(255,255,255,.4);color:#fff;}
+  .closing .btn-outline:hover{background:#fff;color:var(--navy);}
+  .closing .btn-solid{background:#fff;color:var(--navy);border-color:#fff;}
+  .closing .btn-solid:hover{background:var(--teal);border-color:var(--teal);color:#fff;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--navy);color:rgba(255,255,255,.82);position:relative;}
+  footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);}
+  .foot-main{padding:88px 0 56px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;}
+  .foot-brand .brand-word{font-size:16px;color:#fff;}
+  .foot-brand .brand-word span{color:rgba(255,255,255,.5);}
+  .foot-brand p{font-size:13.5px;color:rgba(255,255,255,.55);margin-top:18px;max-width:300px;line-height:1.7;}
+  .foot-col h5{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:20px;font-weight:500;}
+  .foot-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px;}
+  .foot-col a{font-size:13.5px;color:rgba(255,255,255,.75);transition:color .2s ease;}
+  .foot-col a:hover{color:var(--teal);}
+
+  .foot-bottom{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:26px 0;border-top:1px solid rgba(255,255,255,.12);
+    font-size:13px;color:rgba(255,255,255,.45);
+  }
+  .foot-bottom-links{display:flex;gap:26px;}
+  .foot-bottom-links a{font-size:13px;color:rgba(255,255,255,.45);}
+  .foot-bottom-links a:hover{color:#fff;}
+
+  /* ---------- tablet (≤1024px) ---------- */
+  @media (max-width:1024px){
+    .wrap{padding:0 32px;}
+    .nav-row{padding:16px 32px;}
+    .hero-grid{gap:44px;}
+    .india-grid{gap:40px;}
+    .tech-grid{grid-template-columns:repeat(2,1fr);}
+    .adv-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+    .pathway-grid{grid-template-columns:repeat(2,1fr);}
+    .split-flow{grid-template-columns:1fr;gap:40px;}
+    .theme-grid{grid-template-columns:1fr;}
+    .shift-list{grid-template-columns:1fr;}
+  }
+
+  /* ---------- nav collapses (≤900px) ---------- */
+  @media (max-width:900px){
+    .hamburger{display:flex;}
+    .nav-links{
+      position:fixed;top:69px;left:0;right:0;bottom:0;
+      background:var(--paper);
+      flex-direction:column;align-items:flex-start;
+      gap:0;padding:8px 28px 40px;
+      overflow-y:auto;
+      transform:translateY(-12px);opacity:0;visibility:hidden;pointer-events:none;
+      transition:opacity .22s ease, transform .22s ease;
+    }
+    .nav-toggle:checked ~ .nav-links{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;}
+    .nav-links nav{width:100%;}
+    .nav-links nav ul{flex-direction:column;gap:0;width:100%;}
+    .nav-links nav ul li{width:100%;border-bottom:1px solid var(--line);}
+    .nav-links nav ul li a{display:block;padding:16px 2px;font-size:15px;}
+    .nav-cta{flex-direction:column;width:100%;gap:12px;margin-top:20px;}
+    .nav-cta .btn{width:100%;justify-content:center;}
+
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;}
+    .hero-visual .imgph{aspect-ratio:16/10;}
+    .india-grid{grid-template-columns:1fr;}
+    .india-grid .imgph{order:-1;aspect-ratio:16/10;}
+    .tech-grid{grid-template-columns:1fr;}
+    .adv-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .pathway-grid{grid-template-columns:1fr;}
+    .foot-main{grid-template-columns:1fr 1fr;gap:36px 28px;}
+  }
+
+  /* ---------- phone (≤640px) ---------- */
+  @media (max-width:640px){
+    .wrap{padding:0 20px;}
+    .nav-row{padding:14px 20px;}
+    .brand-word span{display:none;}
+    section{padding:56px 0;}
+    .hero{padding:48px 0 44px;}
+    .hero-ctas .btn,.hero-ctas a{width:100%;justify-content:center;}
+    .statement-bar{padding:32px 0;}
+    .ticker-track span{font-size:11px;padding:0 18px;}
+    .journey-step{grid-template-columns:40px 1fr;gap:16px;}
+    .journey-node{width:36px;height:36px;font-size:11px;}
+    .journey-line{top:36px;}
+    .qa-row{grid-template-columns:24px 1fr;gap:14px;}
+    .tag-cloud span{font-size:11px;padding:7px 13px;}
+    .closing-ctas .btn{width:100%;justify-content:center;flex:1;}
+    .foot-main{grid-template-columns:1fr;gap:36px;padding:56px 0 40px;}
+    .foot-bottom{flex-direction:column;gap:14px;align-items:flex-start;padding:22px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <a class="brand" href="index.html">
+      <img src="ape-vision-logo-01.png" alt="APE Vision Group">
+      <span class="brand-word">APE VISION GROUP<span>Shaping bold ideas into visionary realities</span></span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </label>
+    <div class="nav-links">
+      <nav>
+        <ul>
+          <li><a href="about-us.html">About</a></li>
+          <li><a href="our-businesses.html" class="active">Businesses</a></li>
+          <li><a href="industries-capabilities.html">Industries</a></li>
+          <li><a href="global-presence.html">Global Presence</a></li>
+          <li><a href="founders-perspective.html">Leadership</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-outline" href="contact.html">Contact</a>
+        <a class="btn btn-solid" href="partner-with-us.html">Partner With Us</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow" style="margin-bottom:28px;">R&amp;D · Emerging Technologies</div>
+      <h1 class="hero-head">Building <em>what comes</em><br>next.</h1>
+      <p class="hero-sub b">Ape Vision New Technologies is the innovation and R&amp;D division of APE Vision Group, focused on emerging technologies that can shape the next generation of infrastructure, energy and industry.</p>
+      <p class="hero-sub" style="margin-bottom:36px;">From AI and high-performance computing to advanced energy storage, green hydrogen, semiconductors and digital infrastructure, we explore technologies with the potential to become scalable businesses. We combine technical thinking, commercial evaluation and the wider capabilities of APE Vision Group to move promising ideas from opportunity to application.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="contact.html">Explore a Technology Opportunity <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-outline" href="partner-with-us.html">Partner With Us</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="imgph">
+        <div class="imgph-label"><b>Hero image</b>AI / data infrastructure<br>4:5 · replace on upload</div>
+      </div>
+      <div class="crop tl"></div>
+      <div class="crop br"></div>
+    </div>
+  </div>
+</section>
+
+<div class="statement-bar">
+  <div class="wrap">
+    <p>We don't chase technology. <em>We build with what technology makes possible.</em></p>
+  </div>
+</div>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Artificial Intelligence</span><span>AI-Enabled Data Centres</span><span>High-Performance Computing</span><span>Semiconductors</span><span>Advanced Energy Storage</span><span>Green Hydrogen</span><span>Digital Infrastructure</span><span>Advanced Manufacturing</span>
+    <span>Artificial Intelligence</span><span>AI-Enabled Data Centres</span><span>High-Performance Computing</span><span>Semiconductors</span><span>Advanced Energy Storage</span><span>Green Hydrogen</span><span>Digital Infrastructure</span><span>Advanced Manufacturing</span>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">About Ape Vision New Technologies</div>
+      <h2>Where ideas become opportunities.</h2>
+      <p class="section-lead">Technology is changing the economics of entire industries. Ape Vision New Technologies exists to identify these changes early and understand where meaningful opportunities can be built around them.</p>
+    </div>
+    <div class="shift-list">
+      <div class="shift-item"><b>AI</b> is transforming computing.</div>
+      <div class="shift-item"><b>Energy storage</b> is changing how electricity can be generated and consumed.</div>
+      <div class="shift-item"><b>Semiconductors</b> are becoming strategic infrastructure.</div>
+      <div class="shift-item"><b>Digital systems</b> are reshaping physical industries.</div>
+      <div class="shift-item"><b>The energy transition</b> is creating entirely new industrial ecosystems.</div>
+    </div>
+    <div class="tag-cloud">
+      <span>Research</span><span>Technology Evaluation</span><span>Commercial Assessment</span><span>Strategic Partnerships</span><span>Project Development</span><span>Technology Commercialisation</span>
+    </div>
+    <p class="objective-line">Identify what matters. Understand what works. Build what can scale.</p>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Our technology focus</div>
+      <h2>Technologies with long-term industrial potential.</h2>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-num">01</div>
+        <h3>Artificial Intelligence</h3>
+        <p>AI is becoming a foundational technology across industries. We look beyond the software layer to the infrastructure, energy and industrial systems required to make AI commercially useful at scale.</p>
+        <div class="tech-tags"><span>AI Infrastructure</span><span>AI-Enabled Computing</span><span>HPC</span><span>Enterprise AI</span><span>AI Applications</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-num">02</div>
+        <h3>AI-Enabled Data Centres</h3>
+        <p>The expansion of AI and cloud computing is creating unprecedented demand for specialised digital infrastructure — with a natural connection to the Group's infrastructure and EPC capabilities.</p>
+        <div class="tech-tags"><span>High-Density Computing</span><span>Advanced Cooling</span><span>Power Infrastructure</span><span>Energy Storage</span><span>Digital Connectivity</span><span>Infrastructure Optimisation</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-num">03</div>
+        <h3>High-Performance Computing</h3>
+        <p>Modern scientific, industrial and AI workloads require increasingly powerful computing environments capable of supporting demanding computational requirements.</p>
+        <div class="tech-tags"><span>HPC Infrastructure</span><span>Compute Systems</span><span>Data Infrastructure</span><span>Energy &amp; Cooling</span><span>Digital Engineering</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-num">04</div>
+        <h3>Semiconductors</h3>
+        <p>Semiconductors sit at the foundation of modern digital infrastructure. We evaluate the strategic role of advanced computing hardware in India's industrial future.</p>
+        <div class="tech-tags"><span>Semiconductor Technologies</span><span>AI Compute</span><span>Advanced Manufacturing</span><span>Technology Partnerships</span><span>Industrial Applications</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-num">05</div>
+        <h3>Advanced Energy Storage</h3>
+        <p>The future energy system requires more than generation — it requires flexibility that can support renewable integration, digital infrastructure and broader energy-system resilience.</p>
+        <div class="tech-tags"><span>Renewable Integration</span><span>Digital Infrastructure Support</span><span>Industrial Requirements</span><span>System Resilience</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-num">06</div>
+        <h3>Green Hydrogen</h3>
+        <p>Green hydrogen represents an emerging pathway for decarbonising industries where conventional electrification may not be sufficient.</p>
+        <div class="tech-tags"><span>Green Hydrogen</span><span>Hydrogen Infrastructure</span><span>Technology Evaluation</span><span>Industrial Applications</span><span>Project Development</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-num">07</div>
+        <h3>Digital Infrastructure</h3>
+        <p>Digital infrastructure is becoming as important to modern economies as physical infrastructure — an ecosystem, not simply a collection of servers and networks.</p>
+        <div class="tech-tags"><span>Cloud Infrastructure</span><span>Data Infrastructure</span><span>Digital Engineering</span><span>Connected Systems</span><span>Technology-Enabled Infrastructure</span></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-num">08</div>
+        <h3>Advanced Manufacturing</h3>
+        <p>Technology is transforming how products are designed, manufactured and scaled, improving productivity, efficiency, quality and scalability.</p>
+        <div class="tech-tags"><span>Advanced Manufacturing</span><span>Automation</span><span>Digital Engineering</span><span>Technology Integration</span><span>Industrial Innovation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">From research to commercialisation</div>
+      <h2>Innovation needs a path to market.</h2>
+      <p class="section-lead">Not every promising technology becomes a viable business. Ape Vision New Technologies therefore considers both technical potential and commercial reality.</p>
+    </div>
+    <div class="journey">
+      <div class="journey-step">
+        <div class="journey-rail"><div class="journey-node">01</div><div class="journey-line"></div></div>
+        <div class="journey-body"><h4>Identify</h4><p>Track technological developments, market shifts and emerging opportunities.</p></div>
+      </div>
+      <div class="journey-step">
+        <div class="journey-rail"><div class="journey-node">02</div><div class="journey-line"></div></div>
+        <div class="journey-body"><h4>Research</h4><p>Understand the technology, its maturity, applications and limitations.</p></div>
+      </div>
+      <div class="journey-step">
+        <div class="journey-rail"><div class="journey-node">03</div><div class="journey-line"></div></div>
+        <div class="journey-body"><h4>Evaluate</h4><p>Assess technical feasibility, market potential, economics and execution requirements.</p></div>
+      </div>
+      <div class="journey-step">
+        <div class="journey-rail"><div class="journey-node">04</div><div class="journey-line"></div></div>
+        <div class="journey-body"><h4>Validate</h4><p>Engage technology providers, industry experts, research institutions and potential users.</p></div>
+      </div>
+      <div class="journey-step">
+        <div class="journey-rail"><div class="journey-node">05</div><div class="journey-line"></div></div>
+        <div class="journey-body"><h4>Structure</h4><p>Determine the most appropriate route forward — partnership, development, investment, commercialisation or integration.</p></div>
+      </div>
+      <div class="journey-step">
+        <div class="journey-rail"><div class="journey-node">06</div><div class="journey-line"></div></div>
+        <div class="journey-body"><h4>Build</h4><p>Leverage Group capabilities and strategic partners to develop the opportunity.</p></div>
+      </div>
+      <div class="journey-step">
+        <div class="journey-rail"><div class="journey-node">07</div></div>
+        <div class="journey-body"><h4>Scale</h4><p>Move validated technologies toward larger commercial applications and markets.</p></div>
+      </div>
+    </div>
+    <p class="journey-close">Research is the start. Commercial value is the test.</p>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Our innovation model</div>
+      <h2>One technology. Multiple pathways.</h2>
+      <p class="section-lead">We do not assume every technology needs the same route to market. Depending on the opportunity, Ape Vision New Technologies may explore:</p>
+    </div>
+    <div class="pathway-grid">
+      <div class="pathway-card"><h3>Technology Partnerships</h3><p>Working with technology companies and innovators to bring complementary capabilities together.</p></div>
+      <div class="pathway-card"><h3>Research &amp; Development</h3><p>Exploring new technical approaches and applications.</p></div>
+      <div class="pathway-card"><h3>Technology Commercialisation</h3><p>Helping promising technologies move from technical capability toward market application.</p></div>
+      <div class="pathway-card"><h3>Strategic Investments</h3><p>Evaluating technology-led opportunities with long-term commercial potential.</p></div>
+      <div class="pathway-card"><h3>Joint Ventures</h3><p>Building businesses collaboratively with partners who bring technology, capital, market access or execution capability.</p></div>
+      <div class="pathway-card"><h3>Integration</h3><p>Applying emerging technologies to existing Group businesses and infrastructure opportunities.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap split-flow">
+    <div class="lead-text">
+      <div class="eyebrow">Technology × Infrastructure</div>
+      <h2 style="margin-top:18px;font-size:clamp(24px, 3.4vw, 34px);">Digital technology needs physical systems.</h2>
+      <p>The most advanced technologies still depend on physical infrastructure. AI requires computing capacity. Computing requires data centres. Data centres require power. Power increasingly requires renewable generation and storage.</p>
+      <p>This creates an interconnected opportunity across the APE Vision Group ecosystem.</p>
+      <p class="flow-note" style="font-style:italic;color:var(--navy);font-family:var(--font-display);font-size:17px;">The opportunity is not one technology. It is the system around it.</p>
+    </div>
+    <div class="flow">
+      <div class="flow-box">
+        <div class="flow-label">Technology</div>
+        <h4>AI · HPC · Semiconductors · Digital Infrastructure</h4>
+      </div>
+      <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+      <div class="flow-box">
+        <div class="flow-label">Energy</div>
+        <h4>Solar · BESS · Green Hydrogen · Clean Technologies</h4>
+      </div>
+      <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+      <div class="flow-box">
+        <div class="flow-label">Engineering</div>
+        <h4>Infrastructure · EPC · Project Development</h4>
+      </div>
+      <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+      <div class="flow-box">
+        <div class="flow-label">Commercialisation</div>
+        <h4>Partnerships · Investment · Market Access · Scale</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="theme-grid">
+      <div class="theme-card">
+        <div class="eyebrow">Technology × Energy</div>
+        <h3>Building the infrastructure for a cleaner digital economy.</h3>
+        <p>The growth of AI and digital infrastructure is increasing energy requirements at the same time that economies are transitioning toward cleaner power. This allows technology and energy to be considered together rather than as separate verticals.</p>
+        <div class="tag-cloud" style="margin-top:0;">
+          <span>AI Infrastructure</span><span>Renewable Energy</span><span>Energy Storage</span><span>Green Hydrogen</span><span>Energy Efficiency</span><span>Advanced Power Systems</span>
+        </div>
+      </div>
+      <div class="theme-card">
+        <div class="eyebrow">Technology × Industry</div>
+        <h3>Bringing innovation into the real economy.</h3>
+        <p>Technology creates the greatest impact when it moves beyond demonstration and becomes part of real industrial systems. The Group's broader capabilities in engineering, project management, infrastructure and trading provide a practical environment for real-world application.</p>
+        <div class="tag-cloud" style="margin-top:0;">
+          <span>Infrastructure</span><span>Energy</span><span>Manufacturing</span><span>Digital Services</span><span>Industrial Systems</span><span>Environmental Solutions</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Research &amp; development</div>
+      <h2>Questions first. Applications next.</h2>
+      <p class="section-lead">R&amp;D begins with asking the right questions. Ape Vision New Technologies uses this lens to evaluate opportunities before committing significant resources.</p>
+    </div>
+    <div class="qa-list">
+      <div class="qa-row"><div class="q-mark">?</div><p>Can the technology solve a meaningful problem?</p></div>
+      <div class="qa-row"><div class="q-mark">?</div><p>Can it be deployed at scale?</p></div>
+      <div class="qa-row"><div class="q-mark">?</div><p>Is the economics viable?</p></div>
+      <div class="qa-row"><div class="q-mark">?</div><p>What infrastructure does it require?</p></div>
+      <div class="qa-row"><div class="q-mark">?</div><p>What ecosystem must exist around it?</p></div>
+      <div class="qa-row"><div class="q-mark">?</div><p>What is the path to commercialisation?</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Strategic technology partnerships</div>
+      <h2>Innovation rarely happens alone.</h2>
+      <p class="section-lead">We believe strong technology businesses are built through collaboration. Partnerships may take different forms depending on the opportunity — from technical collaboration and commercialisation to strategic investment and joint ventures.</p>
+    </div>
+    <div class="tag-cloud">
+      <span>Technology Companies</span><span>Research Institutions</span><span>Engineering Organisations</span><span>Startups</span><span>Manufacturers</span><span>Infrastructure Developers</span><span>Investors</span><span>Global Technology Partners</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The APE Vision advantage</div>
+      <h2>Technology backed by execution.</h2>
+      <p class="section-lead">A technology company does not exist in a vacuum. Within APE Vision Group, technology opportunities can connect to capabilities across the wider ecosystem.</p>
+    </div>
+    <div class="adv-grid">
+      <div class="adv-card">
+        <div class="adv-role">Consulting · Feasibility · Project Management</div>
+        <h3>Ape Vision LLP</h3>
+        <p>Helping evaluate opportunities and structure projects.</p>
+        <a class="adv-link" href="ape-vision-llp.html">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="adv-card">
+        <div class="adv-role">Engineering · EPC · Infrastructure</div>
+        <h3>Ape Vision Techinfra</h3>
+        <p>Turning technology requirements into physical infrastructure.</p>
+        <a class="adv-link" href="ape-vision-techinfra.html">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="adv-card">
+        <div class="adv-role">Global Sourcing · Industrial Products</div>
+        <h3>Ape Vision Trading</h3>
+        <p>Connecting technology and equipment with international supply and demand.</p>
+        <a class="adv-link" href="our-businesses.html#trading">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="adv-card">
+        <div class="adv-role">Real Estate · Development · Asset Management</div>
+        <h3>Ape Vision Realty</h3>
+        <p>Creating physical environments where technology-led businesses can operate and scale.</p>
+        <a class="adv-link" href="our-businesses.html#realty">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="adv-card">
+        <div class="adv-role">Hospitality · Services · Experience</div>
+        <h3>Ape Premier</h3>
+        <p>Exploring technology applications within consumer and service environments.</p>
+        <a class="adv-link" href="our-businesses.html#premier">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+    <p class="adv-statement">The Group provides the ecosystem. Technology provides the possibility.</p>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Why Ape Vision New Technologies</div>
+      <h2>Built for the long term.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><span class="why-num">01</span><h4>Future-Oriented</h4><p>Focused on sectors with the potential to shape the next generation of industry and infrastructure.</p></div>
+      <div class="why-card"><span class="why-num">02</span><h4>Commercial</h4><p>Technology is evaluated not only for technical merit but for its ability to create sustainable economic value.</p></div>
+      <div class="why-card"><span class="why-num">03</span><h4>Cross-Sector</h4><p>We look for connections between technology, energy, infrastructure, manufacturing and commerce.</p></div>
+      <div class="why-card"><span class="why-num">04</span><h4>Partnership-Driven</h4><p>We work with organisations that bring expertise, intellectual property, capital, market access or execution capability.</p></div>
+      <div class="why-card"><span class="why-num">05</span><h4>Execution-Aware</h4><p>Ideas are considered in the context of real-world engineering, infrastructure, deployment and scale.</p></div>
+      <div class="why-card"><span class="why-num">06</span><h4>India-Focused, Globally Connected</h4><p>We seek opportunities that can contribute to India's technology and industrial capabilities while connecting with global innovation ecosystems.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap india-grid">
+    <div class="imgph"><div class="imgph-label"><b>Image</b>India / industrial skyline<br>1:1 · replace on upload</div></div>
+    <div>
+      <div class="eyebrow">Building for India's next decades</div>
+      <h2 style="margin-top:18px;font-size:clamp(24px, 3.4vw, 34px);">The next phase of growth needs more than traditional infrastructure.</h2>
+      <p>India's next phase of growth will require computing capacity, clean energy, advanced manufacturing, digital systems and new industrial technologies. Ape Vision New Technologies is focused on identifying opportunities at that intersection.</p>
+      <p>Our ambition is to help build businesses and technology platforms that can contribute to India's evolving industrial and digital landscape.</p>
+      <p class="india-close">The next decade will be built on technology.<br>We intend to help build it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--teal);">Building what comes next</div>
+    <h2 style="margin-top:18px;">Research is the start. <em>Commercial value is the test.</em></h2>
+    <div class="closing-ctas">
+      <a class="btn btn-solid" href="contact.html">Explore a Technology Partnership</a>
+      <a class="btn btn-outline" href="contact.html">Discuss an Investment Opportunity</a>
+      <a class="btn btn-outline" href="partner-with-us.html">Partner With APE Vision Group</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-main">
+    <div class="foot-brand">
+      <a class="brand" href="index.html" style="margin-bottom:4px;">
+        <img src="ape-vision-logo-01.png" alt="APE Vision Group" style="height:30px;">
+        <span class="brand-word">APE VISION GROUP</span>
+      </a>
+      <p>Ape Vision New Technologies — research &amp; development, emerging technologies, digital infrastructure and technology commercialisation. Part of APE Vision Group.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="our-businesses.html">Our Businesses</a></li>
+        <li><a href="founders-perspective.html">Founder's Perspective</a></li>
+        <li><a href="global-presence.html">Global Presence</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Businesses</h5>
+      <ul>
+        <li><a href="ape-vision-llp.html">Ape Vision LLP</a></li>
+        <li><a href="ape-vision-techinfra.html">Ape Vision Techinfra</a></li>
+        <li><a href="our-businesses.html#trading">Ape Vision Trading</a></li>
+        <li><a href="ape-vision-new-technologies.html">Ape Vision New Technologies</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Get in Touch</h5>
+      <ul>
+        <li><a href="partner-with-us.html">Partner With Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="industries-capabilities.html">Industries &amp; Capabilities</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 APE Vision Group. All rights reserved.</span>
+    <div class="foot-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

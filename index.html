@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home · APE Vision Group</title>
+<meta name="description" content="APE Vision Group — a diversified, innovation-driven business group across engineering, infrastructure, energy, technology, global trade, hospitality and real estate.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0E1B33;
+    --ink:#2B3648;
+    --ink-soft:#5B6576;
+    --blue:#1E4FD8;
+    --teal:#1FB8AC;
+    --violet:#7C5CE0;
+    --paper:#FFFFFF;
+    --paper-soft:#F6F8FB;
+    --line:#DFE4EC;
+    --line-strong:#B9C1D0;
+    --grad: linear-gradient(115deg, var(--blue) 0%, var(--teal) 55%, var(--violet) 100%);
+
+    --font-display:'Fraunces', serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,h4{font-family:var(--font-display);color:var(--navy);margin:0;font-weight:600;}
+  p{margin:0;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px;}
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--blue);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--blue);
+    display:inline-block;
+  }
+  .btn{
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:.04em;
+    padding:14px 26px;
+    border-radius:2px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border:1px solid var(--navy);
+    transition:all .25s ease;
+  }
+  .btn-solid{background:var(--navy);color:#fff;}
+  .btn-solid:hover{background:var(--blue);border-color:var(--blue);transform:translateY(-2px);}
+  .btn-outline{color:var(--navy);}
+  .btn-outline:hover{background:var(--navy);color:#fff;transform:translateY(-2px);}
+  .btn svg{width:14px;height:14px;transition:transform .25s ease;}
+  .btn:hover svg{transform:translateX(3px);}
+
+  /* ---------- image placeholder ---------- */
+  .imgph{
+    position:relative;
+    border:1px dashed var(--line-strong);
+    border-radius:8px;
+    background:
+      repeating-linear-gradient(135deg, #F0F2F7 0 2px, transparent 2px 14px),
+      var(--paper-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--ink-soft);
+    text-align:center;
+    overflow:hidden;
+    min-height:220px;
+  }
+  .imgph .imgph-label{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:8px 14px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    line-height:1.5;
+  }
+  .imgph .imgph-label b{color:var(--navy);font-size:12px;letter-spacing:.06em;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 40px;
+    max-width:1240px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand img{height:34px;width:auto;}
+  .brand-word{
+    font-family:var(--font-body);font-weight:700;
+    font-size:15px;letter-spacing:.03em;color:var(--navy);
+  }
+  .brand-word span{display:block;font-family:var(--font-mono);font-weight:400;font-size:10px;letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase;margin-top:1px;}
+  nav ul{list-style:none;display:flex;gap:32px;margin:0;padding:0;}
+  nav a{
+    font-size:13px;font-weight:500;color:var(--ink);
+    position:relative;padding:4px 0;
+  }
+  nav a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--blue);transition:width .25s ease;
+  }
+  nav a:hover::after{width:100%;}
+  .nav-cta{display:flex;gap:12px;}
+  .nav-links{display:flex;align-items:center;gap:36px;}
+  .nav-toggle{display:none;}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;z-index:60;}
+  .hamburger span{width:22px;height:2px;background:var(--navy);display:block;transition:all .25s ease;}
+  .nav-toggle:checked ~ .hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle:checked ~ .hamburger span:nth-child(2){opacity:0;}
+  .nav-toggle:checked ~ .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:88px 0 100px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;
+  }
+  h1.hero-head{
+    font-size:clamp(32px, 5.2vw, 56px);line-height:1.08;letter-spacing:-.01em;font-weight:600;
+    margin-bottom:26px;
+  }
+  h1.hero-head em{font-style:italic;font-weight:500;color:var(--blue);}
+  .hero-sub{
+    font-size:clamp(15px, 1.6vw, 17px);color:var(--ink-soft);max-width:520px;margin-bottom:16px;
+  }
+  .hero-sub.b{margin-bottom:36px;}
+  .hero-ctas{display:flex;gap:14px;margin-bottom:0;flex-wrap:wrap;}
+  .hero-visual{position:relative;}
+  .hero-visual .imgph{aspect-ratio:4/5;}
+  .crop{
+    position:absolute;width:22px;height:22px;
+    border-color:var(--navy);border-style:solid;border-width:0;opacity:.5;
+  }
+  .crop.tl{top:-10px;left:-10px;border-top-width:1px;border-left-width:1px;}
+  .crop.br{bottom:-10px;right:-10px;border-bottom-width:1px;border-right-width:1px;}
+
+  /* ---------- ticker ---------- */
+  .ticker{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:18px 0;overflow:hidden;background:var(--paper-soft);
+  }
+  .ticker-track{display:flex;gap:0;width:max-content;animation:scroll 32s linear infinite;}
+  .ticker-track span{
+    font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-soft);padding:0 28px;border-right:1px solid var(--line-strong);
+    white-space:nowrap;
+  }
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- section shell ---------- */
+  section{padding:clamp(64px, 10vw, 110px) 0;}
+  section.soft{background:var(--paper-soft);}
+  .section-head{max-width:640px;margin-bottom:clamp(40px, 6vw, 64px);}
+  .section-head h2{font-size:clamp(26px, 3.6vw, 36px);line-height:1.18;margin-top:18px;}
+  .section-head .kicker{font-size:13px;color:var(--ink-soft);font-weight:500;margin-top:8px;display:block;}
+  .section-lead{font-size:15.5px;color:var(--ink-soft);max-width:640px;margin-top:26px;}
+
+  /* ---------- process ---------- */
+  .process{position:relative;}
+  .process-line{
+    position:absolute;top:26px;left:0;right:0;height:1px;background:var(--line-strong);
+  }
+  .process-grid{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:24px;position:relative;
+  }
+  .process-step{display:flex;flex-direction:column;gap:16px;}
+  .process-node{
+    width:52px;height:52px;border-radius:50%;background:var(--paper);
+    border:1px solid var(--navy);display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-mono);font-size:13px;color:var(--navy);position:relative;z-index:2;
+  }
+  .process-step h4{font-size:16px;margin-bottom:6px;}
+  .process-step p{font-size:13.5px;color:var(--ink-soft);}
+
+  /* ---------- businesses ---------- */
+  .biz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .biz-card{
+    background:var(--paper);display:flex;flex-direction:column;gap:16px;
+    padding-bottom:4px;transition:transform .3s ease;
+  }
+  .biz-card .imgph{aspect-ratio:16/10;min-height:0;border-radius:6px;}
+  .biz-card:hover{transform:translateY(-4px);}
+  .biz-num{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);letter-spacing:.1em;margin-top:4px;}
+  .biz-card h3{font-size:19px;margin-top:4px;}
+  .biz-role{font-family:var(--font-mono);font-size:11.5px;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;}
+  .biz-card p{font-size:13.5px;color:var(--ink-soft);flex:1;margin-top:4px;}
+  .biz-link{font-size:13px;font-weight:600;color:var(--navy);display:inline-flex;align-items:center;gap:6px;margin-top:4px;}
+  .biz-link svg{width:12px;height:12px;transition:transform .25s ease;}
+  .biz-card:hover .biz-link svg{transform:translateX(3px);}
+
+  /* ---------- sectors ---------- */
+  .sector-list{border-top:1px solid var(--line);}
+  .sector-row{
+    display:grid;grid-template-columns:48px 1fr 2fr;gap:24px;
+    padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline;
+  }
+  .sector-row .idx{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);}
+  .sector-row h4{font-size:18px;}
+  .sector-row p{font-size:13.5px;color:var(--ink-soft);}
+
+  /* ---------- global ---------- */
+  .global-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;}
+  .global-grid .imgph{aspect-ratio:1/1;}
+  .tag-cloud{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+  .tag-cloud span{
+    font-family:var(--font-mono);font-size:12px;color:var(--navy);
+    border:1px solid var(--line-strong);border-radius:20px;padding:8px 16px;letter-spacing:.02em;
+  }
+
+  /* ---------- leadership ---------- */
+  .lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+  .lead-card{display:grid;grid-template-columns:150px 1fr;gap:26px;}
+  .lead-card .imgph{aspect-ratio:1/1;min-height:0;}
+  .lead-card .role{font-family:var(--font-mono);font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;}
+  .lead-card h3{font-size:22px;margin-bottom:12px;}
+  .lead-card p{font-size:13.5px;color:var(--ink-soft);}
+
+  /* ---------- closing ---------- */
+  .closing{
+    background:var(--navy);color:#fff;text-align:left;position:relative;overflow:hidden;
+  }
+  .closing::before{
+    content:"";position:absolute;inset:0;
+    background:var(--grad);opacity:.14;
+  }
+  .closing .wrap{position:relative;}
+  .closing h2{color:#fff;font-size:clamp(28px, 4.4vw, 42px);max-width:760px;line-height:1.18;}
+  .closing h2 em{color:var(--teal);font-style:italic;}
+  .closing-ctas{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;}
+  .closing .btn-outline{border-color:rgba(255,255,255,.4);color:#fff;}
+  .closing .btn-outline:hover{background:#fff;color:var(--navy);}
+  .closing .btn-solid{background:#fff;color:var(--navy);border-color:#fff;}
+  .closing .btn-solid:hover{background:var(--teal);border-color:var(--teal);color:#fff;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--navy);color:rgba(255,255,255,.82);position:relative;}
+  footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);}
+  .foot-main{padding:88px 0 56px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;}
+  .foot-brand .brand-word{font-size:16px;color:#fff;}
+  .foot-brand .brand-word span{color:rgba(255,255,255,.5);}
+  .foot-brand p{font-size:13.5px;color:rgba(255,255,255,.55);margin-top:18px;max-width:300px;line-height:1.7;}
+  .foot-col h5{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:20px;font-weight:500;}
+  .foot-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px;}
+  .foot-col a{font-size:13.5px;color:rgba(255,255,255,.75);transition:color .2s ease;}
+  .foot-col a:hover{color:var(--teal);}
+
+  .foot-bottom{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:26px 0;border-top:1px solid rgba(255,255,255,.12);
+    font-size:13px;color:rgba(255,255,255,.45);
+  }
+  .foot-bottom-links{display:flex;gap:26px;}
+  .foot-bottom-links a{font-size:13px;color:rgba(255,255,255,.45);}
+  .foot-bottom-links a:hover{color:#fff;}
+
+  /* ---------- tablet (≤1024px) ---------- */
+  @media (max-width:1024px){
+    .wrap{padding:0 32px;}
+    .nav-row{padding:16px 32px;}
+    .hero-grid{gap:44px;}
+    .lead-grid{gap:32px;}
+    .global-grid{gap:40px;}
+    .biz-grid{grid-template-columns:repeat(2,1fr);}
+  }
+
+  /* ---------- nav collapses (≤900px) ---------- */
+  @media (max-width:900px){
+    .hamburger{display:flex;}
+    .nav-links{
+      position:fixed;top:69px;left:0;right:0;bottom:0;
+      background:var(--paper);
+      flex-direction:column;align-items:flex-start;
+      gap:0;padding:8px 28px 40px;
+      overflow-y:auto;
+      transform:translateY(-12px);opacity:0;visibility:hidden;pointer-events:none;
+      transition:opacity .22s ease, transform .22s ease;
+    }
+    .nav-toggle:checked ~ .nav-links{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;}
+    .nav-links nav{width:100%;}
+    .nav-links nav ul{flex-direction:column;gap:0;width:100%;}
+    .nav-links nav ul li{width:100%;border-bottom:1px solid var(--line);}
+    .nav-links nav ul li a{display:block;padding:16px 2px;font-size:15px;}
+    .nav-cta{flex-direction:column;width:100%;gap:12px;margin-top:20px;}
+    .nav-cta .btn{width:100%;justify-content:center;}
+
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;}
+    .hero-visual .imgph{aspect-ratio:16/10;}
+    .process-grid{grid-template-columns:repeat(3,1fr);row-gap:36px;}
+    .process-line{display:none;}
+    .biz-grid{grid-template-columns:1fr;gap:44px;}
+    .global-grid{grid-template-columns:1fr;}
+    .global-grid .imgph{order:-1;aspect-ratio:16/10;}
+    .lead-grid{grid-template-columns:1fr;gap:40px;}
+    .foot-main{grid-template-columns:1fr 1fr;gap:36px 28px;}
+  }
+
+  /* ---------- phone (≤640px) ---------- */
+  @media (max-width:640px){
+    .wrap{padding:0 20px;}
+    .nav-row{padding:14px 20px;}
+    .brand-word span{display:none;}
+    section{padding:56px 0;}
+    .hero{padding:48px 0 56px;}
+    .hero-ctas .btn,.hero-ctas a{width:100%;justify-content:center;}
+    .ticker-track span{font-size:11px;padding:0 18px;}
+    .process-grid{grid-template-columns:repeat(2,1fr);row-gap:32px;}
+    .sector-row{grid-template-columns:36px 1fr;row-gap:8px;padding:22px 0;}
+    .sector-row p{grid-column:1 / -1;}
+    .lead-card{grid-template-columns:1fr;}
+    .lead-card .imgph{width:96px;height:96px;aspect-ratio:1/1;}
+    .tag-cloud span{font-size:11px;padding:7px 13px;}
+    .closing-ctas .btn{width:100%;justify-content:center;}
+    .foot-main{grid-template-columns:1fr;gap:36px;padding:56px 0 40px;}
+    .foot-bottom{flex-direction:column;gap:14px;align-items:flex-start;padding:22px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <a class="brand" href="index.html">
+      <img src="ape-vision-logo-01.png" alt="APE Vision Group">
+      <span class="brand-word">APE VISION GROUP<span>Shaping bold ideas into visionary realities</span></span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </label>
+    <div class="nav-links">
+      <nav>
+        <ul>
+          <li><a href="about-us.html">About</a></li>
+          <li><a href="our-businesses.html">Businesses</a></li>
+          <li><a href="industries-capabilities.html">Industries</a></li>
+          <li><a href="global-presence.html">Global Presence</a></li>
+          <li><a href="founders-perspective.html">Leadership</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-outline" href="contact.html">Contact</a>
+        <a class="btn btn-solid" href="partner-with-us.html">Partner With Us</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow" style="margin-bottom:28px;">A Diversified Business Group</div>
+      <h1 class="hero-head">Building <em>tomorrow's</em><br>businesses today.</h1>
+      <p class="hero-sub b">A diversified, innovation-driven business group building and developing opportunities across engineering, infrastructure, energy, technology, global trade, hospitality and real estate.</p>
+      <p class="hero-sub" style="margin-bottom:36px;">We combine engineering expertise, commercial intelligence, technology, execution capability and international partnerships to identify opportunities, develop projects and create long-term value.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="our-businesses.html">Explore Our Businesses <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-outline" href="partner-with-us.html">Partner With Us</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="imgph">
+        <div class="imgph-label"><b>Hero image</b>Aerial / flagship project<br>4:5 · replace on upload</div>
+      </div>
+      <div class="crop tl"></div>
+      <div class="crop br"></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Engineering</span><span>Infrastructure</span><span>Energy</span><span>Technology</span><span>Global Trade</span><span>Hospitality</span><span>Real Estate</span>
+    <span>Engineering</span><span>Infrastructure</span><span>Energy</span><span>Technology</span><span>Global Trade</span><span>Hospitality</span><span>Real Estate</span>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">More than a diversified group</div>
+      <h2>An ecosystem built to turn opportunity into value.</h2>
+      <p class="section-lead">Complex opportunities rarely belong to a single discipline. A major infrastructure project may require engineering, financing, technology, procurement and execution. APE Vision Group brings these capabilities together across its businesses.</p>
+    </div>
+    <div class="process">
+      <div class="process-line"></div>
+      <div class="process-grid">
+        <div class="process-step"><div class="process-node">01</div><h4>Identify</h4><p>Emerging opportunities and structural market shifts.</p></div>
+        <div class="process-step"><div class="process-node">02</div><h4>Understand</h4><p>Technical, commercial and market fundamentals.</p></div>
+        <div class="process-step"><div class="process-node">03</div><h4>Connect</h4><p>Capital, technology, partners, suppliers and markets.</p></div>
+        <div class="process-step"><div class="process-node">04</div><h4>Develop</h4><p>Projects, platforms and scalable businesses.</p></div>
+        <div class="process-step"><div class="process-node">05</div><h4>Execute</h4><p>With engineering depth and operational focus.</p></div>
+        <div class="process-step"><div class="process-node">06</div><h4>Scale</h4><p>Through partnerships, innovation and global markets.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Our business ecosystem</div>
+      <h2>Different businesses. One integrated group.</h2>
+      <p class="section-lead">APE Vision Group operates through focused companies and business verticals, each with a distinct role within the broader ecosystem.</p>
+    </div>
+    <div class="biz-grid">
+      <div class="biz-card">
+        <div class="imgph"><div class="imgph-label"><b>Image</b>16:10</div></div>
+        <div class="biz-num">01</div>
+        <h3>Ape Vision LLP</h3>
+        <div class="biz-role">Project advisory &amp; consulting</div>
+        <p>Technical consulting and project advisory across energy, infrastructure and industrial sectors — feasibility, DPRs, technical due diligence, owner's engineering, PMC, financial modelling.</p>
+        <a class="biz-link" href="ape-vision-llp.html">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="biz-card">
+        <div class="imgph"><div class="imgph-label"><b>Image</b>16:10</div></div>
+        <div class="biz-num">02</div>
+        <h3>Ape Vision Techinfra</h3>
+        <div class="biz-role">Engineering, EPC &amp; infrastructure</div>
+        <p>Technology-driven infrastructure and clean-energy projects delivered through EPC and developer/investor models — data centres, solar PV, energy storage.</p>
+        <a class="biz-link" href="ape-vision-techinfra.html">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="biz-card">
+        <div class="imgph"><div class="imgph-label"><b>Image</b>16:10</div></div>
+        <div class="biz-num">03</div>
+        <h3>Ape Vision Trading</h3>
+        <div class="biz-role">Global trading &amp; sourcing</div>
+        <p>Connecting reliable supply with committed buyers across food &amp; agriculture, FMCG, metals, energy and specialised goods — including consumer brand The Kollektor.</p>
+        <a class="biz-link" href="our-businesses.html#trading">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="biz-card">
+        <div class="imgph"><div class="imgph-label"><b>Image</b>16:10</div></div>
+        <div class="biz-num">04</div>
+        <h3>Ape Premier</h3>
+        <div class="biz-role">Hospitality &amp; services</div>
+        <p>Hotels &amp; resorts, food &amp; beverage, corporate hospitality and service businesses built around changing consumer behaviour.</p>
+        <a class="biz-link" href="our-businesses.html#premier">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="biz-card">
+        <div class="imgph"><div class="imgph-label"><b>Image</b>16:10</div></div>
+        <div class="biz-num">05</div>
+        <h3>Ape Vision Realty</h3>
+        <div class="biz-role">Real estate development</div>
+        <p>Commercial, industrial parks, integrated townships, smart infrastructure, institutional buildings and warehousing.</p>
+        <a class="biz-link" href="our-businesses.html#realty">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="biz-card">
+        <div class="imgph"><div class="imgph-label"><b>Image</b>16:10</div></div>
+        <div class="biz-num">06</div>
+        <h3>Ape Vision New Technologies</h3>
+        <div class="biz-role">Innovation, R&amp;D &amp; emerging tech</div>
+        <p>R&amp;D, technology commercialisation, strategic joint ventures and global technology partnerships.</p>
+        <a class="biz-link" href="our-businesses.html#newtech">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Where we build</div>
+      <h2>Sectors shaped by structural change.</h2>
+      <p class="section-lead">Our businesses and strategic initiatives span sectors where technology, infrastructure, energy, trade and changing consumer behaviour are creating long-term opportunity.</p>
+    </div>
+    <div class="sector-list">
+      <div class="sector-row"><div class="idx">01</div><h4>Engineering &amp; Infrastructure</h4><p>Data Centres · EPC · Industrial Infrastructure · Project Development · Project Management</p></div>
+      <div class="sector-row"><div class="idx">02</div><h4>Energy &amp; Clean Technology</h4><p>Solar PV · BESS · CBG · Green Hydrogen · Green Ammonia · Carbon Capture · EV Ecosystem</p></div>
+      <div class="sector-row"><div class="idx">03</div><h4>AI &amp; Digital Infrastructure</h4><p>AI Infrastructure · HPC · Cloud Infrastructure · Digital Engineering · Semiconductor &amp; AI Chip Opportunities</p></div>
+      <div class="sector-row"><div class="idx">04</div><h4>Hospitality &amp; Services</h4><p>Hotels &amp; Resorts · F&amp;B · Corporate Hospitality · Manpower · Visa Services · Overseas Education</p></div>
+      <div class="sector-row"><div class="idx">05</div><h4>Global Trading</h4><p>Food &amp; Agriculture · FMCG · Metals &amp; Minerals · Energy · Infrastructure Products · Specialised Goods</p></div>
+      <div class="sector-row"><div class="idx">06</div><h4>Realty &amp; Infrastructure Development</h4><p>Commercial · Industrial Parks · Integrated Townships · Smart Infrastructure · Warehousing</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap global-grid">
+    <div>
+      <div class="eyebrow">India at the centre</div>
+      <h2 style="margin-top:18px;font-size:clamp(24px, 3.4vw, 34px);">India at the centre. The world within reach.</h2>
+      <p class="section-lead" style="margin-top:22px;">APE Vision Group is rooted in India, while its business relationships and opportunities extend across international markets — connecting India with UAE, Switzerland, Singapore, Mauritius, Japan, Hong Kong, Nepal, Australia, New Zealand, Vietnam and Madagascar.</p>
+      <div class="tag-cloud">
+        <span>Global Sourcing</span><span>Market Access</span><span>Strategic Partnerships</span><span>Cross-Border Commerce</span><span>Investment &amp; Development</span>
+      </div>
+      <a class="btn btn-outline" style="margin-top:36px;" href="global-presence.html">Explore Our Global Presence <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="imgph"><div class="imgph-label"><b>Map graphic</b>India + global network<br>square · replace on upload</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Our leadership</div>
+      <h2>Experience that informs the way we build.</h2>
+    </div>
+    <div class="lead-grid">
+      <div class="lead-card">
+        <div class="imgph"><div class="imgph-label"><b>Headshot</b>1:1</div></div>
+        <div>
+          <div class="role">Founder · Chairman &amp; MD</div>
+          <h3>Sujit Shankar</h3>
+          <p>With 35+ years of professional experience, Sujit Shankar brings extensive expertise across engineering, project management, infrastructure and business leadership — including tenures with DCPL, Reliance Infrastructure and Punj Lloyd, alongside academic backgrounds at IIM Calcutta and IIT Delhi.</p>
+        </div>
+      </div>
+      <div class="lead-card">
+        <div class="imgph"><div class="imgph-label"><b>Headshot</b>1:1</div></div>
+        <div>
+          <div class="role">Co-Founder</div>
+          <h3>Nain Singh</h3>
+          <p>Nain Singh brings extensive entrepreneurial and international business experience, with a focus on building relationships, understanding markets and developing businesses around evolving customer and global opportunities.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--teal);">Building what comes next</div>
+    <h2 style="margin-top:18px;">We don't just want to participate in the future.<br><em>We want to help build it.</em></h2>
+    <div class="closing-ctas">
+      <a class="btn btn-solid" href="our-businesses.html">Explore Our Businesses</a>
+      <a class="btn btn-outline" href="contact.html">Start a Conversation</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-main">
+    <div class="foot-brand">
+      <a class="brand" href="index.html" style="margin-bottom:4px;">
+        <img src="ape-vision-logo-01.png" alt="APE Vision Group" style="height:30px;">
+        <span class="brand-word">APE VISION GROUP</span>
+      </a>
+      <p>Building tomorrow's businesses today. Engineering · Infrastructure · Energy · Technology · Global Trade · Hospitality · Real Estate.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="our-businesses.html">Our Businesses</a></li>
+        <li><a href="founders-perspective.html">Founder's Perspective</a></li>
+        <li><a href="global-presence.html">Global Presence</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Businesses</h5>
+      <ul>
+        <li><a href="ape-vision-llp.html">Ape Vision LLP</a></li>
+        <li><a href="ape-vision-techinfra.html">Ape Vision Techinfra</a></li>
+        <li><a href="our-businesses.html#trading">Ape Vision Trading</a></li>
+        <li><a href="https://thekollektor.com/">The Kollektor ↗</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Get in Touch</h5>
+      <ul>
+        <li><a href="partner-with-us.html">Partner With Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="industries-capabilities.html">Industries &amp; Capabilities</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 APE Vision Group. All rights reserved.</span>
+    <div class="foot-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

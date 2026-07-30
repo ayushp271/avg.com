@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ape Premier · Hospitality &amp; Experience-Led Business · APE Vision Group</title>
+<meta name="description" content="Ape Premier Pvt. Ltd. — part of the APE Vision Group ecosystem, focused on hospitality, services and experience-led business opportunities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0E1B33;
+    --ink:#2B3648;
+    --ink-soft:#5B6576;
+    --blue:#1E4FD8;
+    --teal:#1FB8AC;
+    --violet:#7C5CE0;
+    --paper:#FFFFFF;
+    --paper-soft:#F6F8FB;
+    --line:#DFE4EC;
+    --line-strong:#B9C1D0;
+    --grad: linear-gradient(115deg, var(--blue) 0%, var(--teal) 55%, var(--violet) 100%);
+
+    --font-display:'Fraunces', serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,h4{font-family:var(--font-display);color:var(--navy);margin:0;font-weight:600;}
+  p{margin:0;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px;}
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--blue);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--blue);
+    display:inline-block;
+  }
+  .btn{
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:.04em;
+    padding:14px 26px;
+    border-radius:2px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border:1px solid var(--navy);
+    transition:all .25s ease;
+  }
+  .btn-solid{background:var(--navy);color:#fff;}
+  .btn-solid:hover{background:var(--blue);border-color:var(--blue);transform:translateY(-2px);}
+  .btn-outline{color:var(--navy);}
+  .btn-outline:hover{background:var(--navy);color:#fff;transform:translateY(-2px);}
+  .btn svg{width:14px;height:14px;transition:transform .25s ease;}
+  .btn:hover svg{transform:translateX(3px);}
+
+  /* ---------- image placeholder ---------- */
+  .imgph{
+    position:relative;
+    border:1px dashed var(--line-strong);
+    border-radius:8px;
+    background:
+      repeating-linear-gradient(135deg, #F0F2F7 0 2px, transparent 2px 14px),
+      var(--paper-soft);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--ink-soft);
+    text-align:center;
+    overflow:hidden;
+    min-height:220px;
+  }
+  .imgph .imgph-label{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:8px 14px;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    line-height:1.5;
+  }
+  .imgph .imgph-label b{color:var(--navy);font-size:12px;letter-spacing:.06em;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 40px;
+    max-width:1240px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand img{height:34px;width:auto;}
+  .brand-word{
+    font-family:var(--font-body);font-weight:700;
+    font-size:15px;letter-spacing:.03em;color:var(--navy);
+  }
+  .brand-word span{display:block;font-family:var(--font-mono);font-weight:400;font-size:10px;letter-spacing:.1em;color:var(--ink-soft);text-transform:uppercase;margin-top:1px;}
+  nav ul{list-style:none;display:flex;gap:32px;margin:0;padding:0;}
+  nav a{
+    font-size:13px;font-weight:500;color:var(--ink);
+    position:relative;padding:4px 0;
+  }
+  nav a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--blue);transition:width .25s ease;
+  }
+  nav a:hover::after{width:100%;}
+  nav a.active::after{width:100%;}
+  .nav-cta{display:flex;gap:12px;}
+  .nav-links{display:flex;align-items:center;gap:36px;}
+  .nav-toggle{display:none;}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;z-index:60;}
+  .hamburger span{width:22px;height:2px;background:var(--navy);display:block;transition:all .25s ease;}
+  .nav-toggle:checked ~ .hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle:checked ~ .hamburger span:nth-child(2){opacity:0;}
+  .nav-toggle:checked ~ .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:88px 0 100px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;
+  }
+  h1.hero-head{
+    font-size:clamp(32px, 5.2vw, 56px);line-height:1.08;letter-spacing:-.01em;font-weight:600;
+    margin-bottom:26px;
+  }
+  h1.hero-head em{font-style:italic;font-weight:500;color:var(--blue);}
+  .hero-sub{
+    font-size:clamp(15px, 1.6vw, 17px);color:var(--ink-soft);max-width:520px;margin-bottom:16px;
+  }
+  .hero-sub.b{margin-bottom:36px;}
+  .hero-ctas{display:flex;gap:14px;margin-bottom:0;flex-wrap:wrap;}
+  .hero-visual{position:relative;}
+  .hero-visual .imgph{aspect-ratio:4/5;}
+  .crop{
+    position:absolute;width:22px;height:22px;
+    border-color:var(--navy);border-style:solid;border-width:0;opacity:.5;
+  }
+  .crop.tl{top:-10px;left:-10px;border-top-width:1px;border-left-width:1px;}
+  .crop.br{bottom:-10px;right:-10px;border-bottom-width:1px;border-right-width:1px;}
+
+  /* ---------- ticker ---------- */
+  .ticker{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:18px 0;overflow:hidden;background:var(--paper-soft);
+  }
+  .ticker-track{display:flex;gap:0;width:max-content;animation:scroll 32s linear infinite;}
+  .ticker-track span{
+    font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-soft);padding:0 28px;border-right:1px solid var(--line-strong);
+    white-space:nowrap;
+  }
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- section shell ---------- */
+  section{padding:clamp(64px, 10vw, 110px) 0;}
+  section.soft{background:var(--paper-soft);}
+  .section-head{max-width:640px;margin-bottom:clamp(40px, 6vw, 64px);}
+  .section-head h2{font-size:clamp(26px, 3.6vw, 36px);line-height:1.18;margin-top:18px;}
+  .section-head .kicker{font-size:13px;color:var(--ink-soft);font-weight:500;margin-top:8px;display:block;}
+  .section-lead{font-size:15.5px;color:var(--ink-soft);max-width:640px;margin-top:26px;}
+
+  /* ---------- intro two-col ---------- */
+  .intro-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start;}
+  .intro-grid .section-head{margin-bottom:0;max-width:none;}
+  .intro-copy p{font-size:15.5px;color:var(--ink-soft);margin-bottom:18px;}
+  .intro-copy p:last-child{margin-bottom:0;}
+  .intro-copy strong{color:var(--navy);font-weight:600;}
+
+  /* ---------- process ---------- */
+  .process{position:relative;}
+  .process-line{
+    position:absolute;top:26px;left:0;right:0;height:1px;background:var(--line-strong);
+  }
+  .process-grid{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:24px;position:relative;
+  }
+  .process-grid.cols-5{grid-template-columns:repeat(5,1fr);}
+  .process-step{display:flex;flex-direction:column;gap:16px;}
+  .process-node{
+    width:52px;height:52px;border-radius:50%;background:var(--paper);
+    border:1px solid var(--navy);display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-mono);font-size:13px;color:var(--navy);position:relative;z-index:2;
+  }
+  .process-step h4{font-size:16px;margin-bottom:6px;}
+  .process-step p{font-size:13.5px;color:var(--ink-soft);}
+
+  /* ---------- businesses / focus cards ---------- */
+  .biz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .biz-card{
+    background:var(--paper);display:flex;flex-direction:column;gap:16px;
+    padding-bottom:4px;transition:transform .3s ease;
+  }
+  .biz-card .imgph{aspect-ratio:16/10;min-height:0;border-radius:6px;}
+  .biz-card:hover{transform:translateY(-4px);}
+  .biz-num{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);letter-spacing:.1em;margin-top:4px;}
+  .biz-card h3{font-size:19px;margin-top:4px;}
+  .biz-role{font-family:var(--font-mono);font-size:11.5px;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;}
+  .biz-card p{font-size:13.5px;color:var(--ink-soft);flex:1;margin-top:4px;}
+  .biz-link{font-size:13px;font-weight:600;color:var(--navy);display:inline-flex;align-items:center;gap:6px;margin-top:4px;}
+  .biz-link svg{width:12px;height:12px;transition:transform .25s ease;}
+  .biz-card:hover .biz-link svg{transform:translateX(3px);}
+
+  /* ---------- sectors / capability rows ---------- */
+  .sector-list{border-top:1px solid var(--line);}
+  .sector-row{
+    display:grid;grid-template-columns:48px 1fr 2fr;gap:24px;
+    padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline;
+  }
+  .sector-row .idx{font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);}
+  .sector-row h4{font-size:18px;}
+  .sector-row p{font-size:13.5px;color:var(--ink-soft);}
+  .sector-result{
+    margin-top:36px;padding-top:36px;border-top:1px solid var(--line);
+    font-family:var(--font-display);font-size:clamp(19px,2.2vw,24px);color:var(--navy);
+    font-style:italic;font-weight:500;line-height:1.4;max-width:760px;
+  }
+
+  /* ---------- global-style two col ---------- */
+  .global-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;}
+  .global-grid .imgph{aspect-ratio:1/1;}
+  .tag-cloud{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+  .tag-cloud span{
+    font-family:var(--font-mono);font-size:12px;color:var(--navy);
+    border:1px solid var(--line-strong);border-radius:20px;padding:8px 16px;letter-spacing:.02em;
+  }
+  .pipeline{
+    margin-top:32px;font-family:var(--font-mono);font-size:12.5px;letter-spacing:.05em;
+    color:var(--blue);text-transform:uppercase;display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  }
+
+  /* ---------- philosophy cards ---------- */
+  .phil-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 32px;}
+  .phil-card{
+    border:1px solid var(--line);border-radius:8px;padding:28px 26px;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .phil-card:hover{border-color:var(--blue);transform:translateY(-3px);}
+  .phil-num{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);letter-spacing:.1em;margin-bottom:14px;}
+  .phil-card h4{font-size:17px;margin-bottom:10px;}
+  .phil-card p{font-size:13.5px;color:var(--ink-soft);}
+
+  /* ---------- audience list ---------- */
+  .audience-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px;}
+  .audience-item{
+    border:1px solid var(--line);border-radius:6px;padding:16px 18px;
+    font-size:13.5px;font-weight:500;color:var(--navy);
+    display:flex;align-items:center;gap:10px;
+  }
+  .audience-item::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;}
+
+  /* ---------- closing ---------- */
+  .closing{
+    background:var(--navy);color:#fff;text-align:left;position:relative;overflow:hidden;
+  }
+  .closing::before{
+    content:"";position:absolute;inset:0;
+    background:var(--grad);opacity:.14;
+  }
+  .closing .wrap{position:relative;}
+  .closing h2{color:#fff;font-size:clamp(28px, 4.4vw, 42px);max-width:760px;line-height:1.18;}
+  .closing h2 em{color:var(--teal);font-style:italic;}
+  .closing p{color:rgba(255,255,255,.65);font-size:15px;max-width:600px;margin-top:22px;}
+  .closing-ctas{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;}
+  .closing .btn-outline{border-color:rgba(255,255,255,.4);color:#fff;}
+  .closing .btn-outline:hover{background:#fff;color:var(--navy);}
+  .closing .btn-solid{background:#fff;color:var(--navy);border-color:#fff;}
+  .closing .btn-solid:hover{background:var(--teal);border-color:var(--teal);color:#fff;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--navy);color:rgba(255,255,255,.82);position:relative;}
+  footer::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);}
+  .foot-main{padding:88px 0 56px;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;}
+  .foot-brand .brand-word{font-size:16px;color:#fff;}
+  .foot-brand .brand-word span{color:rgba(255,255,255,.5);}
+  .foot-brand p{font-size:13.5px;color:rgba(255,255,255,.55);margin-top:18px;max-width:300px;line-height:1.7;}
+  .foot-col h5{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:20px;font-weight:500;}
+  .foot-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px;}
+  .foot-col a{font-size:13.5px;color:rgba(255,255,255,.75);transition:color .2s ease;}
+  .foot-col a:hover{color:var(--teal);}
+
+  .foot-bottom{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:26px 0;border-top:1px solid rgba(255,255,255,.12);
+    font-size:13px;color:rgba(255,255,255,.45);
+  }
+  .foot-bottom-links{display:flex;gap:26px;}
+  .foot-bottom-links a{font-size:13px;color:rgba(255,255,255,.45);}
+  .foot-bottom-links a:hover{color:#fff;}
+
+  /* ---------- tablet (≤1024px) ---------- */
+  @media (max-width:1024px){
+    .wrap{padding:0 32px;}
+    .nav-row{padding:16px 32px;}
+    .hero-grid{gap:44px;}
+    .global-grid{gap:40px;}
+    .biz-grid{grid-template-columns:repeat(2,1fr);}
+    .intro-grid{grid-template-columns:1fr;gap:32px;}
+    .phil-grid{grid-template-columns:repeat(2,1fr);}
+    .audience-grid{grid-template-columns:repeat(2,1fr);}
+    .process-grid.cols-5{grid-template-columns:repeat(3,1fr);row-gap:36px;}
+    .process-grid.cols-5 .process-line{display:none;}
+  }
+
+  /* ---------- nav collapses (≤900px) ---------- */
+  @media (max-width:900px){
+    .hamburger{display:flex;}
+    .nav-links{
+      position:fixed;top:69px;left:0;right:0;bottom:0;
+      background:var(--paper);
+      flex-direction:column;align-items:flex-start;
+      gap:0;padding:8px 28px 40px;
+      overflow-y:auto;
+      transform:translateY(-12px);opacity:0;visibility:hidden;pointer-events:none;
+      transition:opacity .22s ease, transform .22s ease;
+    }
+    .nav-toggle:checked ~ .nav-links{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;}
+    .nav-links nav{width:100%;}
+    .nav-links nav ul{flex-direction:column;gap:0;width:100%;}
+    .nav-links nav ul li{width:100%;border-bottom:1px solid var(--line);}
+    .nav-links nav ul li a{display:block;padding:16px 2px;font-size:15px;}
+    .nav-cta{flex-direction:column;width:100%;gap:12px;margin-top:20px;}
+    .nav-cta .btn{width:100%;justify-content:center;}
+
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;}
+    .hero-visual .imgph{aspect-ratio:16/10;}
+    .process-grid{grid-template-columns:repeat(3,1fr);row-gap:36px;}
+    .process-line{display:none;}
+    .biz-grid{grid-template-columns:1fr;gap:44px;}
+    .global-grid{grid-template-columns:1fr;}
+    .global-grid .imgph{order:-1;aspect-ratio:16/10;}
+    .foot-main{grid-template-columns:1fr 1fr;gap:36px 28px;}
+  }
+
+  /* ---------- phone (≤640px) ---------- */
+  @media (max-width:640px){
+    .wrap{padding:0 20px;}
+    .nav-row{padding:14px 20px;}
+    .brand-word span{display:none;}
+    section{padding:56px 0;}
+    .hero{padding:48px 0 56px;}
+    .hero-ctas .btn,.hero-ctas a{width:100%;justify-content:center;}
+    .ticker-track span{font-size:11px;padding:0 18px;}
+    .process-grid{grid-template-columns:repeat(2,1fr);row-gap:32px;}
+    .process-grid.cols-5{grid-template-columns:repeat(2,1fr);}
+    .sector-row{grid-template-columns:36px 1fr;row-gap:8px;padding:22px 0;}
+    .sector-row p{grid-column:1 / -1;}
+    .tag-cloud span{font-size:11px;padding:7px 13px;}
+    .phil-grid{grid-template-columns:1fr;}
+    .audience-grid{grid-template-columns:1fr;}
+    .closing-ctas .btn{width:100%;justify-content:center;}
+    .foot-main{grid-template-columns:1fr;gap:36px;padding:56px 0 40px;}
+    .foot-bottom{flex-direction:column;gap:14px;align-items:flex-start;padding:22px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <a class="brand" href="index.html">
+      <img src="ape-vision-logo-01.png" alt="APE Vision Group">
+      <span class="brand-word">APE VISION GROUP<span>Shaping bold ideas into visionary realities</span></span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </label>
+    <div class="nav-links">
+      <nav>
+        <ul>
+          <li><a href="about-us.html">About</a></li>
+          <li><a href="our-businesses.html" class="active">Businesses</a></li>
+          <li><a href="industries-capabilities.html">Industries</a></li>
+          <li><a href="global-presence.html">Global Presence</a></li>
+          <li><a href="founders-perspective.html">Leadership</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-outline" href="contact.html">Contact</a>
+        <a class="btn btn-solid" href="partner-with-us.html">Partner With Us</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow" style="margin-bottom:28px;">Ape Premier Pvt. Ltd. · Part of APE Vision Group</div>
+      <h1 class="hero-head">Creating <em>experiences</em>.<br>Building opportunity.</h1>
+      <p class="hero-sub b">Ape Premier Pvt. Ltd. is part of the APE Vision Group's diversified business ecosystem, with a focus on opportunities within hospitality, services and experience-led businesses.</p>
+      <p class="hero-sub" style="margin-bottom:36px;">The company reflects the Group's broader approach to identifying sectors where changing consumer needs, evolving markets and strong execution can create sustainable long-term value.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="partner-with-us.html">Explore Partnership Opportunities <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-outline" href="contact.html">Contact APE Vision Group</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="imgph">
+        <div class="imgph-label"><b>Hero image</b>Hospitality / experience-led space<br>4:5 · replace on upload</div>
+      </div>
+      <div class="crop tl"></div>
+      <div class="crop br"></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Hospitality</span><span>Food &amp; Beverage</span><span>Corporate &amp; Business Services</span><span>Experience-Led Concepts</span><span>Strategic Hospitality</span>
+    <span>Hospitality</span><span>Food &amp; Beverage</span><span>Corporate &amp; Business Services</span><span>Experience-Led Concepts</span><span>Strategic Hospitality</span>
+  </div>
+</div>
+
+<section>
+  <div class="wrap intro-grid">
+    <div class="section-head">
+      <div class="eyebrow">About Ape Premier</div>
+      <h2>A business platform for experience-led opportunities.</h2>
+    </div>
+    <div class="intro-copy">
+      <p>Hospitality and services are built around a simple idea: <strong>people remember experiences.</strong> Creating those experiences at scale, however, requires much more than a physical space.</p>
+      <p>It requires understanding customers, locations, operations, service quality, commercial viability and the evolving expectations of modern consumers.</p>
+      <p>Ape Premier approaches this space with the broader capabilities of APE Vision Group behind it — bringing together business development, commercial thinking, project expertise and strategic relationships.</p>
+      <p>The objective is to explore and develop opportunities where hospitality, services and real-world experiences intersect.</p>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Our focus</div>
+      <h2>Hospitality &amp; experience-led business.</h2>
+      <p class="section-lead">Ape Premier's focus is centred around opportunities in the hospitality and services ecosystem. This includes potential areas such as:</p>
+    </div>
+    <div class="biz-grid">
+      <div class="biz-card">
+        <div class="imgph"><div class="imgph-label"><b>Image</b>16:10</div></div>
+        <div class="biz-num">01</div>
+        <h3>Hospitality</h3>
+        <div class="biz-role">Accommodation &amp; hospitality environments</div>
+        <p>Exploring opportunities across accommodation, hospitality environments and related businesses.</p>
+      </div>
+      <div class="biz-card">
+        <div class="imgph"><div class="imgph-label"><b>Image</b>16:10</div></div>
+        <div class="biz-num">02</div>
+        <h3>Food &amp; Beverage</h3>
+        <div class="biz-role">Experience-led F&amp;B</div>
+        <p>Experience-led food and beverage opportunities that complement hospitality and consumer demand.</p>
+      </div>
+      <div class="biz-card">
+        <div class="imgph"><div class="imgph-label"><b>Image</b>16:10</div></div>
+        <div class="biz-num">03</div>
+        <h3>Corporate &amp; Business Services</h3>
+        <div class="biz-role">Service-oriented opportunities</div>
+        <p>Service-oriented opportunities supporting businesses, institutions and their stakeholders.</p>
+      </div>
+      <div class="biz-card">
+        <div class="imgph"><div class="imgph-label"><b>Image</b>16:10</div></div>
+        <div class="biz-num">04</div>
+        <h3>Experience-Led Concepts</h3>
+        <div class="biz-role">Leisure, travel &amp; consumption</div>
+        <p>Developing concepts around changing consumer behaviour, leisure, travel and experiential consumption.</p>
+      </div>
+      <div class="biz-card">
+        <div class="imgph"><div class="imgph-label"><b>Image</b>16:10</div></div>
+        <div class="biz-num">05</div>
+        <h3>Strategic Hospitality Opportunities</h3>
+        <div class="biz-role">Location, experience &amp; strategy</div>
+        <p>Identifying opportunities where location, experience, operational capability and commercial strategy can combine to create long-term value.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">The Ape Premier approach</div>
+      <h2>Experience first. Business discipline always.</h2>
+      <p class="section-lead">Successful hospitality businesses require the right balance between experience and economics. Our approach considers:</p>
+    </div>
+    <div class="process">
+      <div class="process-line"></div>
+      <div class="process-grid">
+        <div class="process-step"><div class="process-node">01</div><h4>The Customer</h4><p>Understanding who the experience is being created for.</p></div>
+        <div class="process-step"><div class="process-node">02</div><h4>The Concept</h4><p>Developing a clear proposition with a distinct reason to exist.</p></div>
+        <div class="process-step"><div class="process-node">03</div><h4>The Location</h4><p>Considering accessibility, market characteristics and surrounding ecosystem.</p></div>
+        <div class="process-step"><div class="process-node">04</div><h4>The Operations</h4><p>Building systems that support consistent service and experience.</p></div>
+        <div class="process-step"><div class="process-node">05</div><h4>The Commercial Model</h4><p>Ensuring the opportunity has a sustainable business rationale.</p></div>
+        <div class="process-step"><div class="process-node">06</div><h4>The Long Term</h4><p>Creating businesses designed to remain relevant as markets evolve.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap global-grid">
+    <div class="imgph"><div class="imgph-label"><b>Ecosystem graphic</b>Group capabilities<br>square · replace on upload</div></div>
+    <div>
+      <div class="eyebrow">Connected to the Group</div>
+      <h2 style="margin-top:18px;font-size:clamp(24px, 3.4vw, 34px);">Hospitality with a broader business ecosystem behind it.</h2>
+      <p class="section-lead" style="margin-top:22px;">Ape Premier benefits from being part of a Group whose capabilities extend beyond hospitality. The wider APE Vision ecosystem includes:</p>
+      <div class="tag-cloud">
+        <span>Engineering &amp; Infrastructure</span><span>Project Management &amp; Consulting</span><span>Global Trading</span><span>Technology &amp; Innovation</span><span>Real Estate</span>
+      </div>
+      <p class="section-lead" style="margin-top:26px;">This creates opportunities to approach hospitality projects with a broader perspective — from site and development considerations to sourcing, technology, infrastructure and commercial strategy.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Where capabilities come together</div>
+      <h2>Different businesses. Shared possibility.</h2>
+      <p class="section-lead">The Group's businesses can create complementary opportunities across the hospitality ecosystem.</p>
+    </div>
+    <div class="sector-list">
+      <div class="sector-row"><div class="idx">01</div><h4>Real Estate × Hospitality</h4><p>Combining property development capabilities with hospitality concepts and operating opportunities.</p></div>
+      <div class="sector-row"><div class="idx">02</div><h4>Trading × Hospitality</h4><p>Leveraging sourcing and international trade capabilities across relevant products and supply requirements.</p></div>
+      <div class="sector-row"><div class="idx">03</div><h4>Technology × Hospitality</h4><p>Exploring technology that can improve guest experience, operations, efficiency and service delivery.</p></div>
+      <div class="sector-row"><div class="idx">04</div><h4>Infrastructure × Hospitality</h4><p>Applying project and engineering expertise to the infrastructure requirements of hospitality developments.</p></div>
+      <div class="sector-row"><div class="idx">05</div><h4>Consulting × Hospitality</h4><p>Bringing technical, commercial and project-development thinking into new opportunities.</p></div>
+    </div>
+    <p class="sector-result">The result: a more connected approach to building hospitality businesses.</p>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Our opportunity areas</div>
+      <h2>Looking beyond traditional hospitality.</h2>
+      <p class="section-lead">As consumer expectations evolve, hospitality increasingly intersects with other sectors. We are interested in opportunities involving:</p>
+    </div>
+    <div class="tag-cloud">
+      <span>Hospitality Development</span><span>Hotels &amp; Resorts</span><span>Food &amp; Beverage</span><span>Business &amp; Corporate Hospitality</span><span>Experience-Led Destinations</span><span>Integrated Developments</span><span>Technology-Enabled Hospitality</span><span>Strategic Partnerships</span>
+    </div>
+    <p class="section-lead" style="margin-top:30px;">The specific operating model and investment structure of each opportunity will depend on its location, scale, market and commercial fundamentals.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Our business philosophy</div>
+      <h2>Build experiences that create value.</h2>
+    </div>
+    <div class="phil-grid">
+      <div class="phil-card"><div class="phil-num">01</div><h4>Customer-Centric</h4><p>The experience begins with understanding the customer.</p></div>
+      <div class="phil-card"><div class="phil-num">02</div><h4>Commercial</h4><p>Good experiences must also make business sense.</p></div>
+      <div class="phil-card"><div class="phil-num">03</div><h4>Operational</h4><p>Consistency is created through disciplined execution.</p></div>
+      <div class="phil-card"><div class="phil-num">04</div><h4>Adaptable</h4><p>Hospitality businesses must evolve with changing consumer behaviour.</p></div>
+      <div class="phil-card"><div class="phil-num">05</div><h4>Connected</h4><p>The best opportunities often emerge where multiple capabilities intersect.</p></div>
+      <div class="phil-card"><div class="phil-num">06</div><h4>Long-Term</h4><p>We focus on building businesses and relationships capable of creating value beyond the immediate opportunity.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap global-grid">
+    <div>
+      <div class="eyebrow">Ape Premier × Ape Vision Realty</div>
+      <h2 style="margin-top:18px;font-size:clamp(24px, 3.4vw, 34px);">From property to experience.</h2>
+      <p class="section-lead" style="margin-top:22px;">Real estate and hospitality naturally intersect. A well-designed property creates the physical foundation. A strong hospitality concept creates the experience. Operational discipline brings the two together.</p>
+      <p class="section-lead" style="margin-top:16px;">Where relevant, Ape Premier can therefore explore opportunities alongside Ape Vision Realty, creating a connected approach to hospitality-led property opportunities within the Group.</p>
+      <div class="pipeline">Site → Development → Concept → Experience → Operations</div>
+    </div>
+    <div class="imgph"><div class="imgph-label"><b>Concept graphic</b>Property to experience<br>square · replace on upload</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Ape Premier × the Group</div>
+      <h2>More than a hospitality business.</h2>
+      <p class="section-lead">Ape Premier forms one part of a broader APE Vision Group ecosystem. Together, these businesses create an ecosystem capable of supporting opportunities across multiple stages of development.</p>
+    </div>
+    <div class="sector-list">
+      <div class="sector-row"><div class="idx">01</div><h4><a href="ape-vision-llp.html">Ape Vision LLP</a></h4><p>Consulting · Advisory · Project Management</p></div>
+      <div class="sector-row"><div class="idx">02</div><h4><a href="ape-vision-techinfra.html">Ape Vision Techinfra</a></h4><p>Engineering · EPC · Infrastructure</p></div>
+      <div class="sector-row"><div class="idx">03</div><h4><a href="our-businesses.html#trading">Ape Vision Trading</a></h4><p>Global Trade · Sourcing · Consumer Products</p></div>
+      <div class="sector-row"><div class="idx">04</div><h4><a href="our-businesses.html#realty">Ape Vision Realty</a></h4><p>Real Estate · Development · Asset Opportunities</p></div>
+      <div class="sector-row"><div class="idx">05</div><h4><a href="our-businesses.html#newtech">Ape Vision New Technologies</a></h4><p>Innovation · Emerging Technologies · Technology Opportunities</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Partner with Ape Premier</div>
+      <h2>Have a hospitality or experience-led opportunity?</h2>
+      <p class="section-lead">We welcome conversations with:</p>
+    </div>
+    <div class="audience-grid">
+      <div class="audience-item">Property Owners</div>
+      <div class="audience-item">Hospitality Operators</div>
+      <div class="audience-item">Developers</div>
+      <div class="audience-item">Investors</div>
+      <div class="audience-item">Food &amp; Beverage Businesses</div>
+      <div class="audience-item">Technology Companies</div>
+      <div class="audience-item">Strategic Partners</div>
+      <div class="audience-item">International Hospitality Groups</div>
+    </div>
+    <p class="section-lead" style="margin-top:36px;">If you have a concept, property, operating platform, technology or investment opportunity that may align with our interests, we would like to understand it.</p>
+    <a class="btn btn-solid" style="margin-top:30px;" href="contact.html">Discuss an Opportunity <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--teal);">Building the next generation of experiences</div>
+    <h2 style="margin-top:18px;">Hospitality is evolving. The businesses that succeed will understand <em>why</em> people choose one experience over another.</h2>
+    <p>Ape Premier aims to explore this changing landscape with an entrepreneurial mindset backed by the capabilities of APE Vision Group. People. Places. Experiences. Value.</p>
+    <div class="closing-ctas">
+      <a class="btn btn-solid" href="partner-with-us.html">Partner With Us</a>
+      <a class="btn btn-outline" href="contact.html">Contact APE Vision Group</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-main">
+    <div class="foot-brand">
+      <a class="brand" href="index.html" style="margin-bottom:4px;">
+        <img src="ape-vision-logo-01.png" alt="APE Vision Group" style="height:30px;">
+        <span class="brand-word">APE VISION GROUP</span>
+      </a>
+      <p>Building tomorrow's businesses today. Engineering · Infrastructure · Energy · Technology · Global Trade · Hospitality · Real Estate.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="our-businesses.html">Our Businesses</a></li>
+        <li><a href="founders-perspective.html">Founder's Perspective</a></li>
+        <li><a href="global-presence.html">Global Presence</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Businesses</h5>
+      <ul>
+        <li><a href="ape-vision-llp.html">Ape Vision LLP</a></li>
+        <li><a href="ape-vision-techinfra.html">Ape Vision Techinfra</a></li>
+        <li><a href="our-businesses.html#trading">Ape Vision Trading</a></li>
+        <li><a href="ape-premier.html">Ape Premier</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Get in Touch</h5>
+      <ul>
+        <li><a href="partner-with-us.html">Partner With Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="industries-capabilities.html">Industries &amp; Capabilities</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 APE Vision Group. All rights reserved.</span>
+    <div class="foot-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
