@@ -319,7 +319,8 @@
     .hamburger span{background:var(--navy);}
     .nav-toggle:checked ~ .hamburger span{background:var(--navy);}
     .nav-links{
-      position:fixed;top:69px;left:0;right:0;bottom:0;
+      position:fixed;top:69px;left:0;right:0;
+      max-height:calc(100vh - 69px);
       background:var(--navy);
       flex-direction:column;align-items:flex-start;
       gap:0;padding:8px 28px 40px;
